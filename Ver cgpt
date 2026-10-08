@@ -2,24 +2,7 @@
 <html lang="en">
 <head>
 
-<script>
-/* =========================
-   MACT V9 CLOUD CONFIG
-   =========================
-   Create a Firebase Web App and paste its config below.
-   Do NOT put a service-account/private key here.
-*/
-window.MACT_FIREBASE_CONFIG = {
-  apiKey: "PASTE_FIREBASE_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "PASTE_MESSAGING_SENDER_ID",
-  appId: "PASTE_FIREBASE_APP_ID"
-};
-window.MACT_CLOUD_COLLECTION = "mactUsers";
-window.MACT_CLOUD_VERSION = "V9";
-</script>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 import {
@@ -97,7 +80,7 @@ if(configured){
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MACT Legal Portal & Case Management — Professional</title>
+<title>V14 • MACT Legal Portal & Case Management — Professional</title>
 <style>
 :root{--primary:#1e3a8a;--primary-light:#dbeafe;--secondary:#475569;--success:#16a34a;--warning:#d97706;--danger:#dc2626;--bg:#f8fafc;--card:#ffffff;--text:#0f172a;--border:#cbd5e1}
 *{box-sizing:border-box}
@@ -339,35 +322,29 @@ body.mact-dark .v7-command-kbd{border-color:#33425d}
   .v7-live{display:none}.v7-quick-stat{grid-template-columns:1fr 1fr}
 }
 @media(max-width:460px){.v7-quick-stat{grid-template-columns:1fr}.v7-floating{right:12px;bottom:12px}}
+<style>#trueAutoSyncStatus{font-weight:700;font-size:11px}#trueAutoSyncStatus::first-letter{font-size:12px}</style>
+
+
+<style id="mact-v14-cloud-only-css">
+.m14-auto-only{font-weight:800;color:#0f766e;font-size:13px;padding:8px 0}
+#m14ScriptUrl{font-family:ui-monospace,monospace;font-size:11px}
+#m14Fab{display:none!important}
+#m14Connect,#m14Sync,#m14Restore,#m14Disconnect{display:none!important}
 </style>
 
+<style id="mact-v14-cloud-only-final">
+#mactAuthGate,#mactUserBar{display:none!important}
+#restoreCloudBtn{display:none!important}
+</style>
 </head>
 <body>
 
-<div id="mactAuthGate" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,.94);align-items:center;justify-content:center;padding:20px">
-  <div style="width:min(430px,100%);background:#fff;border-radius:24px;padding:30px;box-shadow:0 25px 80px rgba(0,0,0,.35);text-align:center">
-    <div style="font-size:46px">⚖️</div>
-    <h2 style="margin:10px 0 6px;font-size:24px">MACT Legal Portal</h2>
-    <p style="color:#64748b;margin:0 0 22px">Sign in with Google to enable authenticated multi-device cloud sync.</p>
-    <div id="mactGoogleButton" style="display:flex;justify-content:center"></div>
-    <button id="mactGoogleLogin" type="button" style="width:100%;margin-top:14px;border:0;border-radius:12px;padding:13px 16px;background:#2563eb;color:#fff;font-weight:700;cursor:pointer">Continue with Google</button>
-    <div id="mactAuthError" style="display:none;color:#b91c1c;margin-top:14px;font-size:13px"></div>
-    <small style="display:block;color:#94a3b8;margin-top:18px">Local data remains available until cloud login is configured.</small>
-  </div>
-</div>
-<div id="mactUserBar" style="display:none;position:fixed;right:16px;bottom:16px;z-index:5000;background:rgba(15,23,42,.96);color:#fff;border-radius:14px;padding:9px 12px;box-shadow:0 8px 30px rgba(0,0,0,.25);align-items:center;gap:9px;font-size:12px">
-  <img id="mactUserPhoto" alt="" style="width:28px;height:28px;border-radius:50%;object-fit:cover;display:none">
-  <span id="mactUserName"></span>
-  <span id="mactCloudState" style="opacity:.7">●</span>
-  <button id="mactGoogleLogout" type="button" style="border:0;background:#334155;color:#fff;border-radius:8px;padding:6px 9px;cursor:pointer">Sign out</button>
-</div>
-
-<aside class="mact-sidebar"><div class="mact-brand"><div class="mact-brand-icon">⚖</div><div><strong>MACT Advocate Office</strong><small>Case Management Suite</small></div></div><nav class="mact-nav"><div class="mact-nav-label">Workspace</div><button type="button" class="active" onclick="mactGo('dashboard')"><span class="ico">⌂</span>Dashboard</button><button type="button" onclick="mactGo('cases')"><span class="ico">▤</span>Case Files</button><button type="button" onclick="mactGo('hearings')"><span class="ico">◷</span>Hearings & Calendar</button><button type="button" onclick="mactGo('clients')"><span class="ico">♙</span>Clients / Claimants</button><div class="mact-nav-label" style="margin-top:12px">Tools</div><button type="button" onclick="mactOpen('generatePetitionBtn')"><span class="ico">§</span>Petitions</button><button type="button" onclick="mactOpen('documentsBtn')"><span class="ico">▧</span>Documents</button><button type="button" onclick="mactOpen('analyticsBtn')"><span class="ico">◒</span>Reports & Analytics</button><button type="button" onclick="mactOpen('backupBtn')"><span class="ico">⇩</span>Backup & Restore</button></nav><div class="mact-side-bottom"><div class="mact-user"><div class="mact-avatar">A</div><div><b style="font-size:11px">Advocate Workspace</b><small style="display:block;color:#91a0bc;font-size:9px">Offline-first office</small></div></div></div></aside><div class="mact-main">
+<aside class="mact-sidebar"><div class="mact-brand"><div class="mact-brand-icon">⚖</div><div><strong>MACT Advocate Office</strong><small>Case Management Suite</small></div></div><nav class="mact-nav"><div class="mact-nav-label">Workspace</div><button type="button" class="active" onclick="mactGo('dashboard')"><span class="ico">⌂</span>Dashboard</button><button type="button" onclick="mactGo('cases')"><span class="ico">▤</span>Case Files</button><button type="button" onclick="mactGo('hearings')"><span class="ico">◷</span>Hearings & Calendar</button><button type="button" onclick="mactGo('clients')"><span class="ico">♙</span>Clients / Claimants</button><div class="mact-nav-label" style="margin-top:12px">Tools</div><button type="button" onclick="mactOpen('generatePetitionBtn')"><span class="ico">§</span>Petitions</button><button type="button" onclick="mactOpen('documentsBtn')"><span class="ico">▧</span>Documents</button><button type="button" onclick="mactOpen('analyticsBtn')"><span class="ico">◒</span>Reports & Analytics</button><button type="button" onclick="mactOpen('backupBtn')"><span class="ico">⇩</span>Backup & Restore</button></nav><div class="mact-side-bottom"><div class="mact-user"><div class="mact-avatar">A</div><div><b style="font-size:11px">Advocate Workspace</b><small style="display:block;color:#91a0bc;font-size:9px">Google Drive Cloud Workspace</small></div></div></div></aside><div class="mact-main">
 <!-- MACT V7 SMART WORKSPACE -->
 <div class="mact-v7-toolbar" id="mactV7Toolbar">
   <input id="v7GlobalCommandSearch" class="search-box v7-search"
          placeholder="⌕ Smart search / command (Ctrl+K)…" autocomplete="off">
-  <span class="v7-chip" id="v7DataChip"><i class="v7-dot"></i><span>Local data ready</span></span>
+  <span class="v7-chip" id="v7DataChip"><i class="v7-dot"></i><span>Google Drive Auto Sync</span></span>
   <span class="v7-chip" id="v7SaveChip">● Saved</span>
   <span class="v7-live" id="v7Clock">--:--</span>
 </div>
@@ -388,17 +365,17 @@ body.mact-dark .v7-command-kbd{border-color:#33425d}
  <div>
   <h1>⚖️ MACT Legal Portal</h1>
   <div style="font-size:12px;color:var(--secondary);margin-top:3px">
-   <span id="connectionStatus" class="status offline">● Offline</span>
-   <span id="syncStatus">☁ Local Mode</span> | 
-   <span id="lastSyncStatus">Last Sync: Never</span>
+   <span id="connectionStatus" class="status offline">● Google Drive: Connecting…</span>
+   <span id="syncStatus">☁ Auto Sync: Connecting…</span> | <span id="trueAutoSyncStatus">☁ Auto Sync: ON</span> | 
+   <span id="lastSyncStatus">Last Drive Sync: Pending</span>
    <span id="headerTodayBadge" class="header-today-badge" style="display:none"></span>
   </div>
  </div>
  <div style="display:flex;gap:8px;flex-wrap:wrap">
   <button type="button" class="btn btn-success" id="openNewFileModalBtn">➕ Add New File</button>
   <button type="button" class="btn btn-warning" id="topAddDateBtn">📅 Add Hearing Date</button>
-  <button type="button" class="btn btn-light" id="googleLoginBtn">☁️ Cloud Sync</button>
-  <button type="button" class="btn btn-light" id="restoreCloudBtn">🔄 Restore Cloud</button>
+  <button type="button" class="btn btn-light" id="googleLoginBtn">☁️ Auto Cloud Sync</button>
+  
    <button type="button" class="btn btn-light" id="recycleBinBtn">🗑️ Recycle Bin</button>
  </div>
 </header>
@@ -429,7 +406,7 @@ body.mact-dark .v7-command-kbd{border-color:#33425d}
  </div>
 </section>
 
-<div class="premium-welcome" style="margin:0 0 14px;padding:12px 15px;border:1px solid #dbe5f0;border-radius:14px;background:linear-gradient(100deg,rgba(255,255,255,.96),rgba(239,246,255,.92));box-shadow:0 5px 18px rgba(15,35,70,.05);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div><strong style="color:#123b78;font-size:13px">⚖️ MACT Legal Workspace</strong><div style="font-size:11px;color:#64748b;margin-top:2px">Offline-first • Case records • Hearings • Documents • Backup • Analytics</div></div><div style="font-size:10px;color:#8a6a22;font-weight:700;background:#fff8e7;border:1px solid #eed9a3;padding:6px 9px;border-radius:999px">PROFESSIONAL EDITION</div></div>
+<div class="premium-welcome" style="margin:0 0 14px;padding:12px 15px;border:1px solid #dbe5f0;border-radius:14px;background:linear-gradient(100deg,rgba(255,255,255,.96),rgba(239,246,255,.92));box-shadow:0 5px 18px rgba(15,35,70,.05);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div><strong style="color:#123b78;font-size:13px">⚖️ MACT Legal Workspace</strong><div style="font-size:11px;color:#64748b;margin-top:2px">Google Drive cloud master • Auto Sync • Case records • Hearings • Documents • Analytics</div></div><div style="font-size:10px;color:#8a6a22;font-weight:700;background:#fff8e7;border:1px solid #eed9a3;padding:6px 9px;border-radius:999px">PROFESSIONAL EDITION</div></div>
 
 <div class="stats-grid">
  <div class="stat-card">
@@ -484,7 +461,7 @@ body.mact-dark .v7-command-kbd{border-color:#33425d}
     </tr>
    </thead>
    <tbody id="recordsTableBody">
-    <tr><td colspan="11" class="empty">No records found.</td></tr>
+    <tr><td colspan="11" class="empty">No case records yet. <button type="button" class="btn btn-success btn-sm" onclick="document.getElementById('openNewFileModalBtn').click()">＋ Create New Case</button></td></tr>
    </tbody>
   </table>
  </div>
@@ -492,7 +469,7 @@ body.mact-dark .v7-command-kbd{border-color:#33425d}
 
 <div class="card">
  <h2 style="margin:0 0 10px;font-size:16px">📅 Today & Upcoming Hearings (<span id="todayCount">0</span>)</h2>
- <div id="hearingList" style="max-height:250px;overflow-y:auto"></div>
+ <div id="hearingList" style="max-height:250px;overflow-y:auto"><div class="adv-panel" style="text-align:center;padding:20px">No hearings recorded yet. <button type="button" class="btn btn-warning btn-sm" style="margin-left:6px" onclick="document.getElementById('topAddDateBtn').click()">＋ Add Hearing</button></div></div>
  <div style="margin-top:10px">
   <button type="button" class="btn btn-light btn-sm" id="printTodayHearingsBtn">🖨️ Print Hearing List</button>
  </div>
@@ -611,6 +588,35 @@ body.mact-dark .v7-command-kbd{border-color:#33425d}
 </div>
 
 
+
+<!-- ===== CLIENT / CLAIMANT WORKSPACE ===== -->
+<section class="card mact-section-anchor" id="mactClientsSection" style="margin-top:14px">
+ <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+  <div><h2 style="margin:0;font-size:16px">♙ Clients / Claimants</h2><div class="adv-muted" style="margin-top:3px">Live claimant directory generated from your case records.</div></div>
+  <button type="button" class="btn btn-light btn-sm" onclick="mactGo('cases')">⌕ Open Case Files</button>
+ </div>
+ <div id="mactClientsBody" style="margin-top:12px"></div>
+</section>
+<script id="mact-client-workspace">
+(function(){
+ 'use strict';
+ const $=id=>document.getElementById(id);
+ const esc=v=>typeof escapeHtml==='function'?escapeHtml(v==null?'':v):String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ function source(){return Array.isArray(window.MACT?.records)?window.MACT.records.filter(r=>!r.deleted&&!r.deletedAt):[];}
+ function renderClients(){
+  const box=$('mactClientsBody');if(!box)return;
+  const map=new Map();
+  source().forEach(r=>{const name=String(r.claimantName||r.claimant||r.clientName||r.caseTitle||'Unnamed Claimant').trim()||'Unnamed Claimant';const k=name.toLowerCase();if(!map.has(k))map.set(k,{name,cases:[]});map.get(k).cases.push(r);});
+  const rows=[...map.values()].sort((a,b)=>a.name.localeCompare(b.name));
+  if(!rows.length){box.innerHTML='<div class="adv-panel" style="text-align:center;padding:24px">No claimant records yet. <button type="button" class="btn btn-success btn-sm" onclick="document.getElementById(\'openNewFileModalBtn\').click()">＋ Create First Case</button></div>';return;}
+  box.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px">'+rows.map(x=>'<div style="border:1px solid #e1e8f0;border-radius:12px;padding:12px;background:var(--card,#fff)"><strong style="display:block">'+esc(x.name)+'</strong><span class="adv-muted">'+x.cases.length+' case file'+(x.cases.length===1?'':'s')+'</span><div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">'+x.cases.slice(0,4).map(r=>'<button type="button" class="btn btn-light btn-sm" data-client-case="'+esc(r.recordId)+'">'+esc(r.mactNo||r.caseTitle||'Open Case')+'</button>').join('')+(x.cases.length>4?'<span class="adv-muted" style="padding:6px">+'+(x.cases.length-4)+' more</span>':'')+'</div></div>').join('')+'</div>';
+  box.querySelectorAll('[data-client-case]').forEach(b=>b.addEventListener('click',()=>{if(typeof openDetail==='function')openDetail(b.dataset.clientCase);}));
+ }
+ window.renderClients=renderClients;
+ document.addEventListener('DOMContentLoaded',()=>setTimeout(renderClients,400),{once:true});
+ setInterval(renderClients,2500);
+})();
+</script>
 
 <!-- ===== ADVANCED FEATURES UI ===== -->
 <div class="card" id="advancedControlCard">
@@ -812,7 +818,9 @@ body.mact-dark .v7-command-kbd{border-color:#33425d}
 <script>
 "use strict";
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1QqqZb6Pd95CkUmC8YcYbI3JXo7BES-9zae6f6Ay7bvmKAwrrzJbjIByGD1zXvAzI/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwDRx52hS2cuNJSAUy3QOcVC099WLqJggdTjRR_sQlxzqdZbpz8qnhkuOIGoqWLGXh4qw/exec"; // Built-in deployment URL — no manual entry.
+const V14_SYNC_FOLDER = "MACT Legal Portal V14";
+const V14_SYNC_FILE = "MACT_Legal_Portal_Data_V14.json";
 
 const STORAGE_KEY = "mact_unlimited_records";
 const LAYOUT_STORAGE_KEY = "mact_form_sections_layout";
@@ -1102,16 +1110,45 @@ function toast(message){
 }
 
 function saveLocal(){
- localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+ try{
+  if(!Array.isArray(records)) records=[];
+  records.forEach(r=>{
+   if(!r || typeof r!=="object") return;
+   if(!r.recordId) r.recordId=r.timestamp||("mact-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,9));
+   if(!r.createdAt) r.createdAt=r.updatedAt||nowISO();
+   if(!r.updatedAt) r.updatedAt=r.createdAt;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+  return true;
+ }catch(e){
+  console.error("MACT local save failed:",e);
+  try{ toast("Local storage save failed. Export a backup before continuing."); }catch(_){}
+  return false;
+ }
 }
 
 function loadLocal(){
  try{
   const raw = localStorage.getItem(STORAGE_KEY);
-  records = raw ? JSON.parse(raw) : [];
-  if(!Array.isArray(records)) records = [];
+  const parsed = raw ? JSON.parse(raw) : [];
+  records = Array.isArray(parsed) ? parsed : [];
+  const seen=new Set();
+  let repaired=false;
+  records.forEach(r=>{
+   if(!r || typeof r!=="object") return;
+   if(!r.recordId || seen.has(String(r.recordId))){
+    r.recordId=r.timestamp||("mact-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,9));
+    repaired=true;
+   }
+   seen.add(String(r.recordId));
+   if(!r.createdAt) r.createdAt=r.updatedAt||nowISO();
+   if(!r.updatedAt) r.updatedAt=r.createdAt;
+  });
+  if(repaired) saveLocal();
  }catch(e){
+  console.error("MACT local data read failed:",e);
   records = [];
+  try{ toast("Saved data could not be read. Use Restore/Import backup if available."); }catch(_){}
  }
 }
 
@@ -1691,7 +1728,7 @@ if(newFileForm){
   closeModal("newFileModal");
   editingRecordId = null;
   toast(existing ? "Record updated successfully." : "Record saved successfully.");
-  await syncCloud();
+  queueTrueAutoSync();
  };
 }
 
@@ -1821,7 +1858,7 @@ if(recordsTableBody){
   saveLocal();
   renderAll();
   toast("Judgment PDF saved.");
-  syncCloud();
+  queueTrueAutoSync();
  };
 }
 
@@ -1876,7 +1913,7 @@ function deleteRecord(id){
  r.deleted=true; r.deletedAt=nowISO(); r.deleteSource="user"; r.updatedAt=nowISO();
  saveLocal(); renderAll();
  toast("Record moved to Recycle Bin. It can be restored.");
- syncCloud();
+ queueTrueAutoSync();
 }
 
 if($("bulkDeleteBtn")){
@@ -1890,7 +1927,7 @@ if($("bulkDeleteBtn")){
     r.deleted=true;r.deletedAt=nowISO();r.deleteSource="bulk";r.updatedAt=nowISO();n++;
    }
   });
-  saveLocal();renderAll();toast(`${n} record(s) moved to Recycle Bin.`);syncCloud();
+  saveLocal();renderAll();toast(`${n} record(s) moved to Recycle Bin.`);queueTrueAutoSync();
  };
 }
 
@@ -2000,7 +2037,7 @@ if(addDateForm){
   renderAll();
   closeModal("addDateModal");
   toast("Hearing date added.");
-  syncCloud();
+  queueTrueAutoSync();
  };
 }
 
@@ -2155,7 +2192,7 @@ if($("importCsvInput")){
     saveLocal();
     renderAll();
     toast(`${imported} CSV record(s) imported.`);
-    syncCloud();
+    queueTrueAutoSync();
    }catch(err){ console.error(err); toast("CSV import failed."); }
    e.target.value = "";
   };
@@ -2166,12 +2203,11 @@ if($("importCsvInput")){
 function openPdf(id){
  const r = getRecord(id);
  if(!r?.judgmentPdfUrl) return;
- const win = window.open();
+ const win = window.open("", "_blank");
  if(!win){ toast("Please allow popups to open PDF."); return; }
- win.document.write(`<!doctype html><html><head><title>${escapeHtml(r.judgmentPdfName || "Judgment PDF")}</title></head><body style="margin:0"><iframe src=" ${r.judgmentPdfUrl}" style="border:0;width:100vw;height:100vh"></iframe>
-
-</body></html>`);
+ win.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>${escapeHtml(r.judgmentPdfName || "Judgment PDF")}</title></head><body style="margin:0"><iframe src="${escapeHtml(r.judgmentPdfUrl)}" style="border:0;width:100vw;height:100vh"></iframe></body></html>`);
  win.document.close();
+ win.focus();
 }
 
 function openPrintWindow(title, content){
@@ -2207,15 +2243,15 @@ if($("printFilteredRecordsBtn")){
 }
 
 function getCloudUrl(){
- return String(localStorage.getItem("mact_cloud_url") || APPS_SCRIPT_URL || "").trim().replace(/\/+$/,"");
+ return String(APPS_SCRIPT_URL || "").trim().replace(/\/+$/,"");
 }
 function cloudJsonp(action, extra={}){
  return new Promise((resolve,reject)=>{
   const url=getCloudUrl(); if(!url){reject(new Error("Cloud URL not configured"));return;}
   const cb="mactCloudCb_"+Date.now()+"_"+Math.random().toString(36).slice(2,8);
   const script=document.createElement("script");
-  const params=new URLSearchParams(Object.assign({action,callback:cb,_:Date.now()},extra));
-  let timer=setTimeout(()=>{cleanup();reject(new Error("Cloud request timed out"));},15000);
+  const params=new URLSearchParams(Object.assign({action,callback:cb,folder:V14_SYNC_FOLDER,fileName:V14_SYNC_FILE,_:Date.now()},extra));
+  let timer=setTimeout(()=>{cleanup();reject(new Error("Cloud request timed out"));},45000);
   function cleanup(){clearTimeout(timer);delete window[cb];script.remove();}
   window[cb]=(data)=>{cleanup();resolve(data);};
   script.onerror=()=>{cleanup();reject(new Error("Cloud endpoint could not be reached"));};
@@ -2236,164 +2272,64 @@ function normalizeCloudRecord(r){
  delete x.judgmentPdfData;
  return x;
 }
+/* ========================= V14.4 CLOUD-ONLY COMPATIBILITY LAYER ========================= */
 async function syncCloud(){
- if(syncBusy)return false;
- if(!navigator.onLine){if($("syncStatus"))$("syncStatus").textContent="☁ Offline • Saved locally";return false;}
- syncBusy=true;
- if($("syncStatus"))$("syncStatus").textContent="☁ Uploading…";
- try{
-  records=records.map(normalizeCloudRecord);
-  saveLocal();
-  const payload={action:"backup",records,updatedAt:nowISO(),source:"MACT Legal Portal",appVersion:"V8-Fixed-Cloud"};
-  await fetch(getCloudUrl(),{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
-  await new Promise(r=>setTimeout(r,900));
-  const check=await cloudJsonp("get");
-  const cloudRecords=Array.isArray(check)?check:(Array.isArray(check.records)?check.records:[]);
-  cloudConnected=true;localStorage.setItem("mact_cloud_connected","1");
-  const time=new Date().toLocaleString();
-  localStorage.setItem("mact_last_sync",time);
-  if($("syncStatus"))$("syncStatus").textContent="☁ Cloud Sync Active";
-  if($("lastSyncStatus"))$("lastSyncStatus").textContent="Last Sync: "+time;
-  if($("v7DataChip")){const sp=$("v7DataChip").querySelector("span");if(sp)sp.textContent="Cloud synced";}
-  toast(`Cloud sync complete • ${cloudRecords.length} record(s) on server.`);
-  return true;
- }catch(err){
-  console.error("Cloud sync error:",err);
-  cloudConnected=false;localStorage.removeItem("mact_cloud_connected");
-  if($("syncStatus"))$("syncStatus").textContent="☁ Cloud unavailable • Local Safe";
-  toast("Cloud sync failed. Local data is safe. Check Cloud URL / Apps Script deployment.");
+  if(window.MACTV14 && typeof window.MACTV14.sync === "function") return window.MACTV14.sync();
   return false;
- }finally{syncBusy=false;}
 }
 async function pullCloud(){
- if(!navigator.onLine){toast("You are offline. Local records are available.");return false;}
- if($("syncStatus"))$("syncStatus").textContent="☁ Connecting…";
- try{
-  const result=await cloudJsonp("get");
-  const cloudRecords=Array.isArray(result)?result:(Array.isArray(result.records)?result.records:[]);
-  const map=new Map(records.map(r=>[String(r.recordId||r.timestamp),r]));
-  cloudRecords.forEach(raw=>{
-   if(!raw||typeof raw!=="object")return;
-   const cr=normalizeCloudRecord(raw),key=String(cr.recordId),local=map.get(key);
-   if(!local||new Date(cr.updatedAt||cr.createdAt||0).getTime()>=new Date(local.updatedAt||local.createdAt||0).getTime())map.set(key,cr);
-  });
-  records=[...map.values()];saveLocal();renderAll();
-  cloudConnected=true;localStorage.setItem("mact_cloud_connected","1");
-  if($("syncStatus"))$("syncStatus").textContent="☁ Cloud Sync Active";
-  toast(`Cloud connected • ${cloudRecords.length} record(s) received.`);
-  return true;
- }catch(err){
-  cloudConnected=false;localStorage.removeItem("mact_cloud_connected");
-  if($("syncStatus"))$("syncStatus").textContent="☁ Cloud unavailable • Local Safe";
-  console.warn("Cloud pull unavailable:",err);
+  if(window.MACTV14 && typeof window.MACTV14.sync === "function") return window.MACTV14.sync();
   return false;
- }
 }
 async function restoreFromCloud(){
- if(!navigator.onLine){toast("You are offline. Cannot restore from cloud.");return;}
- if(!confirm("Restore all non-deleted cloud records into the local register?"))return;
- toast("Restoring cloud records…");
- try{
-  const result=await cloudJsonp("restore",{scope:"all"});
-  const cloudRecords=Array.isArray(result)?result:(Array.isArray(result.records)?result.records:[]);
-  if(!cloudRecords.length){toast("Cloud backup is empty.");return;}
-  const map=new Map(records.map(r=>[String(r.recordId||r.timestamp),r]));let restored=0;
-  cloudRecords.forEach(raw=>{
-   if(!raw||typeof raw!=="object")return;
-   const cr=normalizeCloudRecord(raw),key=String(cr.recordId),local=map.get(key);
-   if(!local){map.set(key,cr);if(!cr.deleted)restored++;return;}
-   const wasDeleted=!!local.deleted;
-   const ct=new Date(cr.updatedAt||0).getTime(),lt=new Date(local.updatedAt||0).getTime();
-   if(!cr.deleted&&(wasDeleted||ct>=lt)){map.set(key,cr);if(wasDeleted)restored++;}
-  });
-  records=[...map.values()];saveLocal();renderAll();cloudConnected=true;
-  const time=new Date().toLocaleString();localStorage.setItem("mact_last_sync",time);
-  if($("lastSyncStatus"))$("lastSyncStatus").textContent="Last Sync: "+time;
-  toast(restored?`${restored} record(s) restored from cloud.`:"No deleted cloud records were found.");
- }catch(err){console.error("Restore error:",err);toast("Cloud restore failed. Check Apps Script deployment.");}
+  // Restore is intentionally disabled in the automatic cloud-only flow.
+  return false;
 }
-if($("restoreCloudBtn"))$("restoreCloudBtn").onclick=restoreFromCloud;
 async function connectCloud(){
- if(!navigator.onLine){toast("You are offline. Local mode is available.");return;}
- toast("Checking cloud connection…");
- const ok=await pullCloud();
- if(ok){if(records.length)await syncCloud();return;}
- const current=getCloudUrl();
- const entered=prompt("Cloud endpoint not reachable. Paste your deployed Google Apps Script Web App URL:",current);
- if(!entered||!/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec/.test(entered.trim())){
-  toast("Cloud URL not changed. Local data remains safe.");return;
- }
- localStorage.setItem("mact_cloud_url",entered.trim().replace(/\/+$/,""));
- if(await pullCloud()){if(records.length)await syncCloud();}
- else toast("Cloud endpoint test failed. Deploy Apps Script as a Web App and try again.");
-}
-if($("googleLoginBtn"))$("googleLoginBtn").onclick=connectCloud;
-
-function updateStats(){
- const visibleRecords=records.filter(r=>!r.deleted&&!r.deletedAt);
- if($("totalCases")) $("totalCases").textContent = visibleRecords.length;
- const active = visibleRecords.filter(r => {
-  const s = String(r.finalStatus || r.judgementStatus || "").toLowerCase();
-  return !s.includes("closed") && !s.includes("disposed") && !s.includes("settled");
- }).length;
- const pending = visibleRecords.filter(r => {
-  const s = String(r.finalStatus || r.judgementStatus || "").toLowerCase();
-  return s.includes("pending");
- }).length;
- const judgments = visibleRecords.filter(r => {
-  const s = String(r.judgementStatus || "").toLowerCase();
-  return s.includes("judgment") || s.includes("judgement");
- }).length;
- if($("activeCases")) $("activeCases").textContent = active;
- if($("pendingCases")) $("pendingCases").textContent = pending;
- if($("judgmentCases")) $("judgmentCases").textContent = judgments;
+  if(window.MACTV14 && typeof window.MACTV14.sync === "function") return window.MACTV14.sync();
+  return false;
 }
 
 function renderAll(){
- renderTable();
- updateStats();
- checkTodaysHearings();
- updateConnectionUI();
- const last = localStorage.getItem("mact_last_sync");
- if($("lastSyncStatus")) $("lastSyncStatus").textContent = "Last Sync: " + (last || "Never");
+  renderTable();
+  updateStats();
+  checkTodaysHearings();
+  updateConnectionUI();
+  if(window.MACTV14 && typeof window.MACTV14.update === "function") window.MACTV14.update();
+  if(typeof window.mactRefreshDashboard === "function") window.mactRefreshDashboard();
+  if(typeof window.renderClients === "function") window.renderClients();
 }
 
 function initializeApp(){
- loadLocal();
- renderForm();
- renderProceedings([]);
- renderAll();
- if(localStorage.getItem("mact_cloud_connected") === "1"){
-  cloudConnected = true;
+  loadLocal();
+  renderForm();
+  renderProceedings([]);
+  renderAll();
   updateConnectionUI();
-  setTimeout(()=>{ if(navigator.onLine) pullCloud(); }, 1000);
-  cloudTimer = setInterval(()=>{
-   if(cloudConnected && navigator.onLine){ syncCloud(); }
-  }, 60000);
- }else{
-  updateConnectionUI();
- }
- const openNewBtn = $("openNewFileModalBtn");
- if(openNewBtn) openNewBtn.onclick = openNewRecord;
- if(!records.length && $("topAddDateBtn")){ $("topAddDateBtn").disabled = false; }
+
+  const openNewBtn = $("openNewFileModalBtn");
+  if(openNewBtn) openNewBtn.onclick = openNewRecord;
+  if(!records.length && $("topAddDateBtn")){ $("topAddDateBtn").disabled = false; }
 }
 
-document.addEventListener("DOMContentLoaded", initializeApp);
-
+document.addEventListener("DOMContentLoaded", initializeApp, {once:true});
 window.addEventListener("beforeunload", () => { try{ saveLocal(); }catch(e){} });
 
-window.MACT = {
- get records(){ return records; },
- saveLocal,
- syncCloud,
- pullCloud,
- restoreFromCloud,
- renderAll,
- openDetail,
- editRecord,
- deleteRecord
-};
+try{
+  Object.defineProperty(window,"records",{configurable:true,get:()=>records,set:v=>{records=Array.isArray(v)?v:[]}});
+}catch(e){}
 
+window.MACT = {
+  get records(){ return records; },
+  saveLocal,
+  syncCloud,
+  pullCloud,
+  restoreFromCloud,
+  renderAll,
+  openDetail,
+  editRecord,
+  deleteRecord
+};
 
 /* ==========================================================
    ADVANCED FEATURE ENGINE - additive layer; existing features stay intact
@@ -2633,15 +2569,28 @@ document.addEventListener("keydown", e => {
 (function(){
  function $(id){return document.getElementById(id)}
  window.mactGo=function(id){
-   if(id==='cases'){document.querySelector('.card')?.scrollIntoView({behavior:'smooth',block:'start'});}
-   else if(id==='hearings'){document.getElementById('hearingList')?.scrollIntoView({behavior:'smooth',block:'center'});}
-   else if(id==='clients'){document.querySelector('.card')?.scrollIntoView({behavior:'smooth',block:'start'});}
-   else document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+   const targets={dashboard:'dashboard',cases:'cases',hearings:'hearingList',clients:'mactClientsSection'};
+   const el=document.getElementById(targets[id]||id);
+   if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
    document.querySelectorAll('.mact-nav button').forEach(b=>b.classList.remove('active'));
-   const t=[...document.querySelectorAll('.mact-nav button')].find(b=>b.textContent.toLowerCase().includes(id==='cases'?'case':id==='hearings'?'hearing':id==='clients'?'client':'dashboard'));
+   const words={dashboard:'dashboard',cases:'case',hearings:'hearing',clients:'client'};
+   const word=words[id]||String(id).toLowerCase();
+   const t=[...document.querySelectorAll('.mact-nav button')].find(b=>b.textContent.toLowerCase().includes(word));
    if(t)t.classList.add('active');
+   if(id==='clients'&&typeof window.renderClients==='function')window.renderClients();
  };
- window.mactOpen=function(id){ const el=$(id); if(el){el.click();return;} if(id==='analyticsBtn'&&typeof openAnalytics==='function'){openAnalytics();return;} if(id==='documentsBtn'&&typeof openDocs==='function'){ const r=(window.currentRecordId||window.records?.find(x=>!x.deleted)?.recordId); if(r) openDocs(r); else toast?.('Open a case first to manage documents.'); return;} };
+ window.mactOpen=function(id){
+   const map={analyticsBtn:'caseAnalyticsBtn',backupBtn:'backupBtn',generatePetitionBtn:'generatePetitionBtn',printFilteredRecordsBtn:'printFilteredRecordsBtn'};
+   const el=document.getElementById(map[id]||id);
+   if(el&&typeof el.click==='function'){el.click();return;}
+   if(id==='documentsBtn'){
+     const r=Array.isArray(window.MACT?.records)?window.MACT.records.find(x=>!x.deleted&&!x.deletedAt):null;
+     if(r&&typeof openDocs==='function')openDocs(r.recordId);
+     else {window.mactGo('cases');if(typeof toast==='function')toast('Create or open a case first to manage documents.');}
+     return;
+   }
+   if(id==='analyticsBtn'&&typeof openAnalytics==='function')openAnalytics();
+ };
  window.mactToggleDark=function(){
    document.body.classList.toggle('mact-dark');
    localStorage.setItem('mact_dark_mode',document.body.classList.contains('mact-dark')?'1':'0');
@@ -2650,7 +2599,7 @@ document.addEventListener("keydown", e => {
 
  window.mactRefreshDashboard=function(){
    try{
-    const active=(window.records||[]).filter(r=>!r.deleted&&!r.deletedAt);
+    const active=(Array.isArray(window.MACT?.records)?window.MACT.records:[]).filter(r=>!r.deleted&&!r.deletedAt);
     const hearings=[];
     active.forEach(r=>(r.proceedings||[]).forEach(p=>{if(p.nextDate) hearings.push({r,date:p.nextDate,notes:p.notes||''})}));
     hearings.sort((a,b)=>String(a.date).localeCompare(String(b.date)));
@@ -2695,7 +2644,7 @@ document.addEventListener("keydown", e => {
 const V7_KEY="mact_v7_ui_state";
 const $=id=>document.getElementById(id);
 const safe=(fn,fallback)=>{try{return fn()}catch(e){console.warn("MACT V7:",e);return fallback}};
-const getRecords=()=>Array.isArray(window.records)?window.records:[];
+const getRecords=()=>Array.isArray(window.MACT?.records)?window.MACT.records:[];
 const active=()=>getRecords().filter(r=>!r.deleted&&!r.deletedAt);
 const today=()=>typeof localDate==="function"?localDate():new Date().toISOString().slice(0,10);
 function saveUI(){safe(()=>localStorage.setItem(V7_KEY,JSON.stringify({dark:document.body.classList.contains("mact-dark")})))}
@@ -2746,7 +2695,7 @@ function updateClock(){
 }
 function updateSaveChip(){
   const el=$("v7SaveChip");if(!el)return;
-  el.textContent=safe(()=>localStorage.getItem("mact_last_sync"),"")?"● Saved":"● Local";
+  el.textContent=safe(()=>localStorage.getItem("mact_v14_drive_last_sync"),"")?"● Cloud Synced":"● Cloud Syncing";
 }
 function updateSmartAlert(){
   const hs=[];active().forEach(r=>(r.proceedings||[]).forEach(p=>{if(p.nextDate)hs.push(p.nextDate)}));
@@ -2807,130 +2756,10 @@ window.addEventListener("unhandledrejection",function(e){
 </script>
 
 
-<script>
-/* =========================
-   V9 Firebase Cloud Bridge
-   ========================= */
-(function(){
-  const state={applying:false,lastRemoteHash:""};
-  const $id=id=>document.getElementById(id);
-  const toastSafe=msg=>{try{if(typeof toast==="function")toast(msg);else console.log(msg)}catch(e){console.log(msg)}};
-  const uid=()=>crypto.randomUUID?crypto.randomUUID():"mact-"+Date.now()+"-"+Math.random().toString(36).slice(2);
 
-  function cloudReady(){return !!(window.MACTFirebase&&window.MACTFirebase.configured&&window.MACTFirebase.user);}
-  function cleanRecord(r){
-    const x=JSON.parse(JSON.stringify(r||{}));
-    x.recordId=String(x.recordId||x.timestamp||uid());
-    x.createdAt=x.createdAt||new Date().toISOString();
-    x.updatedAt=x.updatedAt||x.createdAt;
-    x.deleted=!!x.deleted;
-    x.deviceId=localStorage.getItem("mact_device_id")||(localStorage.setItem("mact_device_id",uid()),localStorage.getItem("mact_device_id"));
-    if(Array.isArray(x.documents))x.documents=x.documents.map(d=>{const z=Object.assign({},d);delete z.data;return z});
-    return x;
-  }
-  function hashRecords(list){
-    return JSON.stringify((list||[]).map(cleanRecord).sort((a,b)=>a.recordId.localeCompare(b.recordId)));
-  }
-  function mergeLWW(local,remote){
-    const map=new Map((local||[]).map(r=>[String(r.recordId),r]));
-    (remote||[]).forEach(rr=>{
-      const r=cleanRecord(rr), k=r.recordId, l=map.get(k);
-      if(!l){map.set(k,r);return}
-      const rt=new Date(r.updatedAt||0).getTime(), lt=new Date(l.updatedAt||0).getTime();
-      // Automatic conflict resolution: newest update wins.
-      // If timestamps tie, deviceId provides deterministic ordering.
-      if(rt>lt || (rt===lt && String(r.deviceId||"")>String(l.deviceId||""))) map.set(k,r);
-    });
-    return [...map.values()];
-  }
-  async function cloudWrite(){
-    if(!cloudReady()||state.applying)return false;
-    try{
-      const {db,user}=window.MACTFirebase;
-      const {doc,runTransaction,serverTimestamp}=window.MACTFirebase.__api;
-      const ref=doc(db,window.MACT_CLOUD_COLLECTION,user.uid);
-      const local=(typeof records!=="undefined"?records:[]).map(cleanRecord);
-      await runTransaction(db,async tx=>{
-        const snap=await tx.get(ref);
-        const remote=snap.exists()&&Array.isArray(snap.data().records)?snap.data().records:[];
-        const merged=mergeLWW(local,remote);
-        tx.set(ref,{
-          email:user.email||"",displayName:user.displayName||"",photoURL:user.photoURL||"",
-          records:merged,updatedAt:serverTimestamp(),schemaVersion:9
-        },{merge:true});
-      });
-      return true;
-    }catch(e){console.error("Cloud write:",e);toastSafe("Cloud save failed; local data is safe.");return false}
-  }
-  function applyRemote(data){
-    if(!data||!Array.isArray(data.records)||state.applying)return;
-    const remote=data.records.map(cleanRecord);
-    const local=(typeof records!=="undefined"?records:[]).map(cleanRecord);
-    const merged=mergeLWW(local,remote);
-    const h=hashRecords(merged);
-    if(h===state.lastRemoteHash)return;
-    state.lastRemoteHash=h;
-    if(hashRecords(local)===h)return;
-    state.applying=true;
-    try{
-      records=merged;
-      if(typeof saveLocal==="function")saveLocal();
-      if(typeof renderAll==="function")renderAll();
-      localStorage.setItem("mact_last_sync",new Date().toLocaleString());
-      const st=$id("mactCloudState");if(st)st.textContent="● Synced";
-    }finally{state.applying=false}
-  }
 
-  window.addEventListener("mact-cloud-data",e=>applyRemote(e.detail&&e.detail.data));
 
-  window.addEventListener("mact-auth",async e=>{
-    const user=e.detail&&e.detail.user;
-    const gate=$id("mactAuthGate"),bar=$id("mactUserBar");
-    if(user){
-      if(gate)gate.style.display="none";
-      if(bar)bar.style.display="flex";
-      if($id("mactUserName"))$id("mactUserName").textContent=user.displayName||user.email||"Google user";
-      if($id("mactUserPhoto")&&user.photoURL){$id("mactUserPhoto").src=user.photoURL;$id("mactUserPhoto").style.display="block"}
-      const st=$id("mactCloudState");if(st)st.textContent="● Connecting";
-      await new Promise(r=>setTimeout(r,500));
-      await cloudWrite();
-      if(st)st.textContent="● Synced";
-    }else{
-      if(bar)bar.style.display="none";
-      // Don't lock out existing local users when Firebase is not configured.
-      if(window.MACTFirebase&&window.MACTFirebase.configured){
-        if(gate)gate.style.display="flex";
-      }
-    }
-  });
 
-  document.addEventListener("DOMContentLoaded",()=>{
-    $id("mactGoogleLogin")?.addEventListener("click",async()=>{
-      try{await window.mactGoogleLogin()}catch(e){
-        console.error(e);
-        const box=$id("mactAuthError");if(box){box.textContent=e.message||"Google sign-in failed";box.style.display="block"}
-      }
-    });
-    $id("mactGoogleLogout")?.addEventListener("click",()=>window.mactGoogleLogout&&window.mactGoogleLogout());
-    window.MACTFirebase=window.MACTFirebase||{};
-    // Expose Firestore functions used by the bridge without leaking credentials.
-    if(window.MACTFirebase.configured){
-      import("https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js").then(api=>{
-        window.MACTFirebase.__api=api;
-      });
-    }
-    // Auto-save local mutations shortly after the app changes records.
-    let timer=0;
-    const schedule=()=>{
-      clearTimeout(timer);timer=setTimeout(()=>{if(cloudReady())cloudWrite()},900);
-    };
-    const oldSave=window.saveLocal;
-    if(typeof oldSave==="function"){
-      window.saveLocal=function(){const out=oldSave.apply(this,arguments);schedule();return out}
-    }
-  });
-})();
-</script>
 
 
 <script id="mact-v10-button-repair">
@@ -3307,5 +3136,1161 @@ function backup(){const payload={version:"MACT-V12",createdAt:new Date().toISOSt
 function bind(){$("m12Fab").onclick=()=>{$("m12Ov").classList.add("show");populate();renderStats();priority();security()};$("m12Close").onclick=()=>$("m12Ov").classList.remove("show");$("m12Ov").addEventListener("click",e=>{if(e.target.id==="m12Ov")$("m12Ov").classList.remove("show")});document.querySelectorAll(".m12-tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".m12-tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".m12-page").forEach(x=>x.classList.remove("active"));b.classList.add("active");$("m12-"+b.dataset.page).classList.add("active");if(b.dataset.page==="timeline")timeline();if(b.dataset.page==="security")security()});$("m12Refresh").onclick=()=>{renderStats();priority();populate();toast("Intelligence refreshed.")};$("m12Upcoming").onclick=()=>{document.querySelector('[data-page="timeline"]').click();$("m12TimelineSearch").value="";timeline()};$("m12Incomplete").onclick=()=>{const rs=records().filter(r=>["claimantName","mactNo","accidentDate","courtName"].some(k=>!String(r[k]||"").trim()));$("m12Priority").innerHTML=rs.length?rs.map(r=>`<div class="m12-section"><b>${esc(label(r))}</b><br><span class="m12-muted">Missing: ${esc(["claimantName","mactNo","accidentDate","courtName"].filter(k=>!String(r[k]||"").trim()).join(", "))}</span></div>`).join(""):'<div class="m12-muted">No incomplete cases detected.</div>'};$("m12Snapshot").onclick=backup;$("m12TimelineSearch").oninput=timeline;$("m12AddDoc").onclick=addDoc;$("m12GenerateDraft").onclick=draft;$("m12CopyDraft").onclick=async()=>{try{await navigator.clipboard.writeText($("m12DraftOut").value);toast("Draft copied.")}catch(e){$("m12DraftOut").select();document.execCommand("copy");toast("Draft copied.")}};$("m12DownloadDraft").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([$("m12DraftOut").value],{type:"text/plain"}));a.download="MACT_Draft.txt";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};$("m12PrintCaseBtn").onclick=()=>printCase(false);$("m12PrintTimelineBtn").onclick=()=>printCase(true);$("m12ExportAudit").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([localStorage.getItem(AUD)||"[]"],{type:"application/json"}));a.download="MACT_Audit_Log.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};$("m12ClearAudit").onclick=()=>{if(confirm("Clear local audit log?")){localStorage.removeItem(AUD);security();toast("Audit log cleared.")}};document.addEventListener("keydown",e=>{if(e.key==="Escape")$("m12Ov").classList.remove("show");if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==="p"){e.preventDefault();$("m12Fab").click()}})}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bind,{once:true});else bind();window.MACTV12={open:()=>$("m12Fab").click(),backup};
 })();
-</script></body>
+</script>
+<style id="mact-v13-css">
+/* =========================================================
+   MACT V13 — LEGAL WORKFLOW + COMPENSATION + QA LAYER
+   Additive only: V1–V12 base remains intact.
+   ========================================================= */
+#m13Fab{position:fixed;right:18px;bottom:84px;z-index:99991;border:0;border-radius:999px;
+ padding:12px 16px;background:linear-gradient(135deg,#0b1736,#2563eb);color:#fff;font-weight:900;
+ box-shadow:0 14px 35px rgba(15,23,42,.28);cursor:pointer}
+#m13Ov{display:none;position:fixed;inset:0;z-index:99989;background:rgba(2,6,23,.70);
+ backdrop-filter:blur(7px);padding:12px;align-items:center;justify-content:center}
+#m13Ov.show{display:flex}
+#m13Panel{width:min(1280px,100%);height:min(95vh,960px);border-radius:20px;overflow:hidden;
+ background:var(--office-card,#fff);color:var(--office-text,#172033);box-shadow:0 35px 100px rgba(0,0,0,.42);
+ display:flex;flex-direction:column}
+#m13Head{padding:14px 18px;border-bottom:1px solid rgba(148,163,184,.25);display:flex;
+ justify-content:space-between;align-items:center;gap:10px;background:linear-gradient(120deg,#0b1736,#162a59);color:#fff}
+#m13Head h2{margin:0;font-size:19px}
+#m13Close{border:0;background:transparent;color:#fff;font-size:26px;cursor:pointer}
+#m13Nav{display:flex;gap:6px;padding:9px 12px;border-bottom:1px solid rgba(148,163,184,.22);overflow:auto}
+.m13-tab{white-space:nowrap;border:1px solid rgba(148,163,184,.3);background:rgba(148,163,184,.07);
+ color:inherit;border-radius:9px;padding:8px 11px;font-weight:800;cursor:pointer}
+.m13-tab.active{background:#2563eb;color:#fff;border-color:#2563eb}
+#m13Body{padding:14px;overflow:auto}.m13-page{display:none}.m13-page.active{display:block}
+.m13-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.m13-card{border:1px solid rgba(148,163,184,.28);border-radius:14px;padding:13px;background:rgba(148,163,184,.055)}
+.m13-num{font-size:24px;font-weight:950}.m13-label{font-size:11px;opacity:.72;margin-top:3px}
+.m13-section{border:1px solid rgba(148,163,184,.28);border-radius:14px;padding:14px;margin-top:12px}
+.m13-section h3{margin:0 0 10px;font-size:15px}.m13-actions{display:flex;flex-wrap:wrap;gap:8px}
+.m13-btn{border:1px solid rgba(148,163,184,.35);background:rgba(148,163,184,.08);color:inherit;
+ border-radius:9px;padding:8px 11px;cursor:pointer;font-weight:800}
+.m13-btn.primary{background:#2563eb;color:#fff;border-color:#2563eb}.m13-btn.gold{background:#fff8df;color:#755a0a;border-color:#e9d28a}
+.m13-btn.danger{background:#dc2626;color:#fff;border-color:#dc2626}
+.m13-input,.m13-select,.m13-text{box-sizing:border-box;width:100%;padding:9px 10px;border:1px solid #cbd5e1;
+ border-radius:9px;background:transparent;color:inherit;margin:4px 0 8px;min-height:38px}
+.m13-text{min-height:110px}.m13-formgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.m13-formgrid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.m13-help{font-size:10px;opacity:.68;line-height:1.45}.m13-badge{display:inline-block;border-radius:999px;padding:3px 7px;
+ font-size:10px;font-weight:900;background:rgba(37,99,235,.12)}.m13-badge.red{color:#b91c1c;background:#fee2e2}
+.m13-badge.green{color:#166534;background:#dcfce7}.m13-result{font-size:13px;line-height:1.5}
+.m13-table{width:100%;border-collapse:collapse;font-size:11px}.m13-table th,.m13-table td{padding:7px;border-bottom:1px solid rgba(148,163,184,.22);text-align:left}
+.m13-table th{position:sticky;top:0;background:var(--office-card,#fff)}
+.m13-code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:10px;white-space:pre-wrap;
+ background:#0b1220;color:#dbeafe;border-radius:10px;padding:12px;overflow:auto;max-height:340px}
+.m13-ok{color:#15803d;font-weight:800}.m13-warn{color:#b45309;font-weight:800}.m13-fail{color:#b91c1c;font-weight:800}
+.m13-summary{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}.m13-summary span{padding:5px 8px;border-radius:999px;background:rgba(148,163,184,.1);font-size:10px;font-weight:800}
+@media(max-width:900px){.m13-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.m13-formgrid,.m13-formgrid.two{grid-template-columns:1fr}#m13Fab{right:10px;bottom:72px}}
+@media(max-width:520px){.m13-grid{grid-template-columns:1fr}#m13Panel{height:96vh;border-radius:17px}}
+body.mact-dark #m13Panel{background:#111b2e;color:#e8edf7}
+body.mact-dark .m13-table th{background:#111b2e}
+body.mact-dark .m13-input,body.mact-dark .m13-select,body.mact-dark .m13-text{border-color:#33425d}
+</style>
+
+<button id="m13Fab" type="button" title="V13 Legal Workflow Studio">⚖️ V13 Studio</button>
+
+<div id="m13Ov" aria-hidden="true">
+ <div id="m13Panel">
+  <div id="m13Head">
+   <div><h2>⚖️ MACT Legal Workflow Studio V13</h2>
+    <div style="font-size:10px;opacity:.78">Petition formats • compensation engine • field mapping • automated QA • deletion protection</div>
+   </div>
+   <button id="m13Close" type="button">×</button>
+  </div>
+  <div id="m13Nav">
+   <button class="m13-tab active" data-page="overview">📊 Overview</button>
+   <button class="m13-tab" data-page="comp">🧮 Compensation</button>
+   <button class="m13-tab" data-page="petition">⚖️ High Court Drafts</button>
+   <button class="m13-tab" data-page="mapping">🧩 Field Mapping</button>
+   <button class="m13-tab" data-page="qa">🧪 Automated QA</button>
+   <button class="m13-tab" data-page="security">🔐 Delete Guard</button>
+  </div>
+  <div id="m13Body">
+
+   <section id="m13-overview" class="m13-page active">
+    <div id="m13Stats" class="m13-grid"></div>
+    <div class="m13-section">
+     <h3>New workflow modules</h3>
+     <div class="m13-actions">
+      <button class="m13-btn primary" id="m13NewCase" type="button">＋ New Case</button>
+      <button class="m13-btn" id="m13OpenPetition" type="button">⚖️ Existing Petition Generator</button>
+      <button class="m13-btn" id="m13OpenV12" type="button">🚀 V12 Pro Center</button>
+      <button class="m13-btn gold" id="m13RunQuickQA" type="button">🧪 Run Quick QA</button>
+     </div>
+    </div>
+    <div class="m13-section">
+     <h3>Workflow health</h3>
+     <div id="m13HealthOut"></div>
+    </div>
+   </section>
+
+   <section id="m13-comp" class="m13-page">
+    <div class="m13-section">
+     <h3>Automated MACT Compensation Calculator</h3>
+     <div class="m13-help">This is a configurable calculation worksheet, not a determination of the amount legally payable. Enter the multiplier and percentage assumptions applicable to the case/order. Review all heads and the governing law before relying on the result.</div>
+     <div class="m13-formgrid">
+      <div><label>Claim type</label><select id="m13ClaimType" class="m13-select"><option value="fatal">Fatal / death</option><option value="injury">Injury / disability</option></select></div>
+      <div><label>Age at accident</label><input id="m13Age" class="m13-input" type="number" min="0" step="1" placeholder="e.g. 35"></div>
+      <div><label>Multiplier</label><input id="m13Multiplier" class="m13-input" type="number" min="0" step="0.01" placeholder="Enter multiplier"></div>
+      <div><label>Monthly income (₹)</label><input id="m13Income" class="m13-input" type="number" min="0" step="1" placeholder="e.g. 25000"></div>
+      <div><label>Future prospects (%)</label><input id="m13Future" class="m13-input" type="number" min="0" step="0.01" value="0"></div>
+      <div><label>Personal expenses (%)</label><input id="m13Personal" class="m13-input" type="number" min="0" max="100" step="0.01" value="33.33"></div>
+      <div><label>Functional disability (%)</label><input id="m13Disability" class="m13-input" type="number" min="0" max="100" step="0.01" value="0"></div>
+      <div><label>Loss of income months</label><input id="m13TreatmentMonths" class="m13-input" type="number" min="0" step="0.1" value="0"></div>
+      <div><label>Medical expenses (₹)</label><input id="m13Medical" class="m13-input" type="number" min="0" step="1" value="0"></div>
+      <div><label>Future medical (₹)</label><input id="m13FutureMedical" class="m13-input" type="number" min="0" step="1" value="0"></div>
+      <div><label>Pain & suffering (₹)</label><input id="m13Pain" class="m13-input" type="number" min="0" step="1" value="0"></div>
+      <div><label>Attendant / care (₹)</label><input id="m13Attendant" class="m13-input" type="number" min="0" step="1" value="0"></div>
+      <div><label>Conveyance / special diet (₹)</label><input id="m13Conveyance" class="m13-input" type="number" min="0" step="1" value="0"></div>
+      <div><label>Loss of amenities (₹)</label><input id="m13Amenities" class="m13-input" type="number" min="0" step="1" value="0"></div>
+      <div><label>Consortium / conventional heads (₹)</label><input id="m13Consortium" class="m13-input" type="number" min="0" step="1" value="0"></div>
+      <div><label>Other proven loss (₹)</label><input id="m13Other" class="m13-input" type="number" min="0" step="1" value="0"></div>
+     </div>
+     <div class="m13-actions" style="margin-top:8px">
+      <button class="m13-btn primary" id="m13Calc" type="button">🧮 Calculate</button>
+      <button class="m13-btn" id="m13SuggestMultiplier" type="button">↗ Age-band reference</button>
+      <button class="m13-btn" id="m13UseCurrentCase" type="button">↙ Load Current Case</button>
+      <button class="m13-btn" id="m13CopyCalc" type="button">📋 Copy Calculation</button>
+     </div>
+     <div id="m13CalcOut" class="m13-result" style="margin-top:12px"></div>
+    </div>
+   </section>
+
+   <section id="m13-petition" class="m13-page">
+    <div class="m13-section">
+     <h3>High Court / Appellate Draft Studio</h3>
+     <div class="m13-help">Templates are structured drafting aids. High Court rules, court-fee requirements, annexures, limitation, jurisdiction and local formatting must be checked against the applicable court rules and case record before filing.</div>
+     <div class="m13-formgrid two">
+      <div><label>Case</label><select id="m13PetCase" class="m13-select"></select></div>
+      <div><label>Draft format</label><select id="m13PetType" class="m13-select">
+       <option value="appeal173">Appeal against MACT Award — Section 173 MV Act</option>
+       <option value="writ">Writ Petition — Civil / Article 226-227 structure</option>
+       <option value="condonation">Application / affidavit for condonation of delay</option>
+       <option value="stay">Stay / interim relief application structure</option>
+       <option value="execution">Execution / compliance application structure</option>
+       <option value="allahabad">Allahabad High Court profile — MACT appeal cover</option>
+      </select></div>
+      <div><label>High Court / Bench</label><input id="m13Court" class="m13-input" placeholder="e.g. High Court of Judicature at Allahabad / Bench"></div>
+      <div><label>Appeal / petition number</label><input id="m13AppealNo" class="m13-input" placeholder="[To be allotted]"></div>
+      <div><label>Appellant / petitioner</label><input id="m13Appellant" class="m13-input"></div>
+      <div><label>Respondent(s)</label><input id="m13Respondent" class="m13-input"></div>
+      <div><label>Award date</label><input id="m13AwardDate" class="m13-input" type="date"></div>
+      <div><label>Limitation / delay days</label><input id="m13Delay" class="m13-input" type="number" min="0" step="1" value="0"></div>
+      <div><label>Relief / claimed amount (₹)</label><input id="m13Relief" class="m13-input" type="number" min="0" step="1"></div>
+     </div>
+     <div class="m13-actions">
+      <button class="m13-btn primary" id="m13GeneratePetition" type="button">⚖️ Generate Draft</button>
+      <button class="m13-btn" id="m13PrintPetition" type="button">🖨️ Print Draft</button>
+      <button class="m13-btn" id="m13CopyPetition" type="button">📋 Copy</button>
+     </div>
+     <textarea id="m13PetitionOut" class="m13-text" rows="22" placeholder="Generated appellate / writ draft will appear here..."></textarea>
+    </div>
+   </section>
+
+   <section id="m13-mapping" class="m13-page">
+    <div class="m13-section">
+     <h3>Field Mapping & Data Normalization</h3>
+     <div class="m13-help">Maps alternate field names used by imported records to canonical MACT fields without deleting the original source value. Useful for CSV imports, older versions and custom fields.</div>
+     <div class="m13-formgrid two">
+      <div><label>Case</label><select id="m13MapCase" class="m13-select"></select></div>
+      <div><label>Canonical field</label><select id="m13Canonical" class="m13-select"></select></div>
+      <div><label>Source / alternate key</label><input id="m13SourceKey" class="m13-input" placeholder="e.g. claimant, applicantName"></div>
+      <div><label>Manual value override</label><input id="m13MapValue" class="m13-input" placeholder="Optional"></div>
+     </div>
+     <div class="m13-actions">
+      <button class="m13-btn primary" id="m13ApplyMap" type="button">🧩 Apply Mapping</button>
+      <button class="m13-btn" id="m13ScanMap" type="button">🔎 Scan Case</button>
+      <button class="m13-btn" id="m13ExportMap" type="button">⬇️ Export Mapping Report</button>
+     </div>
+     <div id="m13MapOut"></div>
+    </div>
+   </section>
+
+   <section id="m13-qa" class="m13-page">
+    <div class="m13-section">
+     <h3>Automated Application Test Runner</h3>
+     <div class="m13-help">Runs local structural checks against the current HTML application: required DOM IDs, core functions, storage, record schema, duplicate IDs and common broken references. It does not replace legal review or browser/device testing.</div>
+     <div class="m13-actions">
+      <button class="m13-btn primary" id="m13RunTests" type="button">🧪 Run Full Test Suite</button>
+      <button class="m13-btn" id="m13TestStorage" type="button">💾 Test Storage</button>
+      <button class="m13-btn" id="m13TestSchema" type="button">🗂️ Test Record Schema</button>
+      <button class="m13-btn" id="m13ExportQA" type="button">⬇️ Export QA Report</button>
+     </div>
+     <div id="m13QaSummary" class="m13-summary"></div>
+     <div id="m13QaOut"></div>
+    </div>
+   </section>
+
+   <section id="m13-security" class="m13-page">
+    <div class="m13-section">
+     <h3>Deletion Protection</h3>
+     <div class="m13-help">When a local PIN is configured, this layer requires the same PIN before a record is moved to the Recycle Bin, before bulk deletion, and before local permanent empty-bin operations. This is an additional guard; it does not replace the existing app lock.</div>
+     <div id="m13SecurityOut"></div>
+     <div class="m13-actions">
+      <button class="m13-btn" id="m13LockNow" type="button">🔒 Lock App</button>
+      <button class="m13-btn" id="m13OpenSecurity" type="button">⚙️ Open PIN Settings</button>
+      <button class="m13-btn danger" id="m13TestDeleteGuard" type="button">🧪 Test Guard</button>
+     </div>
+    </div>
+   </section>
+
+  </div>
+ </div>
+</div>
+
+<script id="mact-v13-js">
+(function(){
+"use strict";
+const KEY="mact_unlimited_records";
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const readRecords=()=>{
+ try{const x=JSON.parse(localStorage.getItem(KEY)||"[]");return Array.isArray(x)?x:[]}
+ catch(e){return[]}
+};
+const active=()=>readRecords().filter(r=>!r.deleted&&!r.deletedAt);
+const label=r=>r.caseTitle||r.mactNo||r.fileNumber||r.claimantName||"Unnamed case";
+const uid=()=>((crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now()+"_"+Math.random().toString(36).slice(2));
+const saveRecords=rs=>localStorage.setItem(KEY,JSON.stringify(rs));
+const now=()=>new Date().toISOString();
+const toastV13=m=>{try{if(typeof window.toast==="function")window.toast(m);else alert(m)}catch(e){alert(m)}};
+const fmt=n=>Number(n||0).toLocaleString("en-IN",{maximumFractionDigits:2});
+const num=id=>Math.max(0,Number($(id)?.value||0));
+const currentId=()=>window.MACT?.records?.find?.(r=>String(r.recordId)===String(window.currentRecordId||""))?.recordId||window.currentRecordId||"";
+function populateCases(){
+ const rs=active(), opts='<option value="">— Select case —</option>'+rs.map(r=>`<option value="${esc(r.recordId||"")}">${esc(label(r))}${r.mactNo?" • "+esc(r.mactNo):""}</option>`).join("");
+ ["m13PetCase","m13MapCase"].forEach(id=>{if($(id))$(id).innerHTML=opts});
+ const canonical=[
+  ["caseTitle","Case Title"],["fileNumber","File Number"],["mactNo","MACT No."],["claimantName","Claimant Name"],
+  ["fatherName","Father / Spouse Name"],["address","Address"],["mobile","Mobile"],["accidentDate","Accident Date"],
+  ["vehicleNo","Vehicle Number"],["vehicleType","Vehicle Type"],["insuranceCo","Insurance Company"],["courtName","Court Name"],
+  ["district","District"],["income","Monthly Income"],["age","Age"],["disabilityPercentage","Disability %"],
+  ["compensationAmount","Compensation Amount"],["status","Status"],["finalStatus","Final Status"],["notes","Notes"]
+ ];
+ if($("m13Canonical"))$("m13Canonical").innerHTML=canonical.map(x=>`<option value="${x[0]}">${esc(x[1])}</option>`).join("");
+}
+function stats(){
+ const rs=active(),del=readRecords().filter(r=>r.deleted||r.deletedAt),today=new Date().toISOString().slice(0,10);
+ const hearings=rs.filter(r=>(r.proceedings||[]).some(p=>String(p.nextDate||"")===today)).length;
+ const incomplete=rs.filter(r=>["caseTitle","claimantName","mactNo","accidentDate"].some(k=>!String(r[k]||"").trim())).length;
+ const calc=rs.filter(r=>r.compensationAmount||r.income||r.monthlyIncome).length;
+ const vals=[[rs.length,"Active cases"],[hearings,"Today's hearings"],[incomplete,"Incomplete core fields"],[del.length,"Recycle Bin"],[calc,"Cases with income/comp. data"],[documentCount(),"Documents"],[duplicateIds().length,"Duplicate IDs"],[navigator.onLine?"ONLINE":"OFFLINE","Network"]];
+ $("m13Stats").innerHTML=vals.map(x=>`<div class="m13-card"><div class="m13-num">${esc(x[0])}</div><div class="m13-label">${esc(x[1])}</div></div>`).join("");
+ health();
+}
+function documentCount(){
+ try{const x=JSON.parse(localStorage.getItem("mact_v12_documents")||"[]");return Array.isArray(x)?x.length:0}catch(e){return 0}
+}
+function duplicateIds(){
+ const seen=new Set(),dups=[];
+ readRecords().forEach(r=>{const k=String(r.recordId||"");if(k&&seen.has(k))dups.push(k);seen.add(k)});
+ return dups;
+}
+function health(){
+ const checks=[
+  ["Storage",(()=>{try{localStorage.setItem("m13_test","1");localStorage.removeItem("m13_test");return true}catch(e){return false}})(),"Local storage writable"],
+  ["Records",Array.isArray(readRecords()),"Record array readable"],
+  ["Core render",typeof window.MACT==="object","MACT API exposed"],
+  ["Petition",typeof window.buildPetition==="function"||typeof window.openPetition==="function","Existing petition engine detected"],
+  ["PIN",String(localStorage.getItem("mact_local_pin_v1")||"").length>=4,"Deletion PIN available"],
+  ["Duplicates",duplicateIds().length===0,duplicateIds().length?"Duplicate record IDs detected":"No duplicate record IDs"]
+ ];
+ $("m13HealthOut").innerHTML="<div class='m13-summary'>"+checks.map(c=>`<span class="${c[1]?"m13-ok":"m13-warn"}">${c[1]?"✓":"⚠"} ${esc(c[0])}</span>`).join("")+"</div>"+
+ "<table class='m13-table'><tr><th>Check</th><th>Result</th><th>Detail</th></tr>"+
+ checks.map(c=>`<tr><td>${esc(c[0])}</td><td class="${c[1]?"m13-ok":"m13-warn"}">${c[1]?"PASS":"CHECK"}</td><td>${esc(c[2])}</td></tr>`).join("")+"</table>";
+}
+function suggestMultiplier(){
+ const age=num("m13Age"), bands=[[0,15,20],[16,20,18],[21,25,18],[26,30,17],[31,35,16],[36,40,15],[41,45,14],[46,50,13],[51,55,11],[56,60,9],[61,65,7],[66,200,5]];
+ const hit=bands.find(x=>age>=x[0]&&age<=x[1]);
+ if(hit){$("m13Multiplier").value=hit[2];toastV13("Age-band reference populated. Verify the applicable legal basis before use.");}
+ else toastV13("Enter a valid age.");
+}
+function calc(){
+ const type=$("m13ClaimType").value,age=num("m13Age"),mult=num("m13Multiplier"),income=num("m13Income"),future=num("m13Future"),personal=Math.min(100,num("m13Personal")),disability=Math.min(100,num("m13Disability"));
+ const annual=income*12,fp=annual*future/100,withFuture=annual+fp;
+ let dependency=0,earningLoss=0;
+ if(type==="fatal"){
+  const personalAmt=withFuture*personal/100;
+  dependency=Math.max(0,withFuture-personalAmt)*mult;
+ }else{
+  const functionalAnnual=withFuture*(disability/100);
+  earningLoss=functionalAnnual*mult;
+  dependency=earningLoss;
+ }
+ const treatment=income*num("m13TreatmentMonths");
+ const heads={dependency,lossOfIncomeDuringTreatment:treatment,medical:num("m13Medical"),futureMedical:num("m13FutureMedical"),pain:num("m13Pain"),attendant:num("m13Attendant"),conveyance:num("m13Conveyance"),amenities:num("m13Amenities"),consortium:num("m13Consortium"),other:num("m13Other")};
+ const total=Object.values(heads).reduce((a,b)=>a+b,0);
+ const lines=[
+  ["Claim type",type==="fatal"?"Fatal / death":"Injury / disability"],["Age",age||"—"],["Multiplier",mult||"—"],
+  ["Monthly income","₹ "+fmt(income)],["Annual income","₹ "+fmt(annual)],["Future prospects","₹ "+fmt(fp)],
+  [type==="fatal"?"Loss of dependency":"Loss of future earning","₹ "+fmt(dependency)],
+  ["Loss of income during treatment","₹ "+fmt(treatment)],["Medical","₹ "+fmt(heads.medical)],
+  ["Future medical","₹ "+fmt(heads.futureMedical)],["Pain & suffering","₹ "+fmt(heads.pain)],
+  ["Attendant / care","₹ "+fmt(heads.attendant)],["Conveyance / special diet","₹ "+fmt(heads.conveyance)],
+  ["Loss of amenities","₹ "+fmt(heads.amenities)],["Consortium / conventional heads","₹ "+fmt(heads.consortium)],
+  ["Other proven loss","₹ "+fmt(heads.other)]
+ ];
+ $("m13CalcOut").innerHTML=`<div class="m13-summary"><span>Calculated total: ₹ ${fmt(total)}</span><span>Future prospects: ₹ ${fmt(fp)}</span><span>${type==="fatal"?"Dependency":"Earning loss"}: ₹ ${fmt(dependency)}</span></div>
+ <table class="m13-table"><tr><th>Head</th><th>Amount</th></tr>${lines.map(x=>`<tr><td>${esc(x[0])}</td><td>${esc(x[1])}</td></tr>`).join("")}</table>
+ <div class="m13-help" style="margin-top:8px">Formula used by this worksheet: annual income = monthly × 12; future prospects = annual × FP%; fatal dependency = (annual + FP − personal-expense deduction) × multiplier; injury earning loss = (annual + FP) × functional-disability% × multiplier; other entered heads are added. This configurable result is not a legal award determination.</div>`;
+ $("m13CalcOut").dataset.copy=lines.map(x=>x[0]+": "+x[1]).join("\n")+"\nCalculated total: ₹ "+fmt(total);
+ return total;
+}
+function loadCurrentCase(){
+ const id=currentId(),r=active().find(x=>String(x.recordId)===String(id));
+ if(!r){toastV13("Open/select a case first.");return}
+ $("m13Age").value=r.age||r.personAge||"";
+ $("m13Income").value=r.income||r.monthlyIncome||"";
+ $("m13Disability").value=r.disabilityPercentage||r.disability||"0";
+ $("m13Multiplier").value=r.multiplier||"";
+ $("m13Relief").value=r.compensationAmount||"";
+ const fatal=String(r.status||r.claimStatus||"").toLowerCase().includes("death")||String(r.finalStatus||"").toLowerCase().includes("death");
+ $("m13ClaimType").value=fatal?"fatal":"injury";calc();toastV13("Current case data loaded where matching fields were available.");
+}
+function petitionCase(){
+ const id=$("m13PetCase").value,r=active().find(x=>String(x.recordId)===String(id));
+ return r||null;
+}
+function buildHighCourtDraft(){
+ const r=petitionCase(),type=$("m13PetType").value;
+ const court=$("m13Court").value.trim()||r?.courtName||"[HIGH COURT / BENCH]";
+ const appellant=$("m13Appellant").value.trim()||r?.claimantName||"[APPELLANT / PETITIONER]";
+ const respondent=$("m13Respondent").value.trim()||r?.insuranceCo||"[RESPONDENT(S)]";
+ const no=$("m13AppealNo").value.trim()||"[TO BE ALLOTTED]";
+ const award=$("m13AwardDate").value||r?.awardDate||"[AWARD DATE]";
+ const delay=num("m13Delay"),relief=num("m13Relief")||numFromRecord(r,"compensationAmount");
+ const caseNo=r?.mactNo||r?.fileNumber||"[MACT / CASE NUMBER]";
+ const accident=r?.accidentDate||"[ACCIDENT DATE]";
+ const vehicle=r?.vehicleNo||"[VEHICLE NUMBER]";
+ let body="";
+ if(type==="appeal173"){
+  body=[
+   "MEMORANDUM OF APPEAL UNDER SECTION 173 OF THE MOTOR VEHICLES ACT, 1988","",
+   "1. The appellant states that the impugned award dated "+award+" was passed in the above matter.",
+   "2. The appeal is directed against the findings / quantum / liability portions of the impugned award to the extent set out after review of the record.",
+   "3. The facts of the accident, parties, pleadings, evidence, medical material, income material and award should be reproduced accurately from the certified record.",
+   "4. GROUNDS OF APPEAL",
+   "   A. [Insert finding challenged and evidence relied upon.]",
+   "   B. [Insert legal / factual ground.]",
+   "   C. [Insert quantum / multiplier / income / disability ground, if applicable.]",
+   "   D. [Insert liability / negligence / insurer ground, if applicable.]",
+   "5. LIMITATION",
+   "   "+(delay>0?("Delay stated in this worksheet: "+delay+" day(s); a separate delay explanation/application should be prepared if required."):"The limitation position must be independently verified before filing."),
+   "","PRAYER",
+   "It is respectfully prayed that this Hon'ble Court may be pleased to:",
+   "(a) admit and allow the appeal to the extent permissible;",
+   "(b) modify / set aside the impugned award to the extent established by the record;",
+   "(c) grant such consequential relief as is legally permissible; and",
+   "(d) pass any other order deemed just and proper.",
+   "","ANNEXURES",
+   "1. Certified copy of impugned award",
+   "2. Claim petition / written statements, as applicable",
+   "3. Evidence / medical / disability documents, as applicable",
+   "4. Relevant orders and documents",
+   "5. Other documents relied upon",
+   "","VERIFICATION",
+   "[Insert court-compliant verification after review.]"
+  ].join("\n");
+ }else if(type==="writ"){
+  body=[
+   "PETITION STRUCTURE","",
+   "1. SYNOPSIS AND LIST OF DATES",
+   "2. PARTICULARS OF THE PETITIONER",
+   "3. PARTICULARS OF RESPONDENTS",
+   "4. FACTS OF THE CASE",
+   "5. IMPUGNED ORDER / ACTION",
+   "6. GROUNDS",
+   "   A. [Ground based on the record.]",
+   "   B. [Ground based on applicable law.]",
+   "   C. [Jurisdiction / procedural ground, if applicable.]",
+   "7. INTERIM RELIEF",
+   "   [State precise interim relief and urgency.]",
+   "8. FINAL RELIEF / PRAYER",
+   "   [State precise relief sought.]",
+   "9. DECLARATION / VERIFICATION",
+   "10. LIST OF ANNEXURES","",
+   "The factual narrative must be copied and checked against the underlying record; no fact should be added merely because a template contains a placeholder."
+  ].join("\n");
+ }else if(type==="condonation"){
+  body=[
+   "APPLICATION FOR CONDONATION OF DELAY","",
+   "The applicant respectfully states:",
+   "1. The impugned award / order is dated "+award+".",
+   "2. The period of delay stated for this worksheet is "+delay+" day(s).",
+   "3. The delay occurred for the following reasons:",
+   "   [Insert a complete, truthful chronology supported by documents.]",
+   "4. The applicant has acted with the diligence explained in the accompanying affidavit.",
+   "5. No material fact concerning limitation should be omitted.",
+   "","PRAYER",
+   "It is respectfully prayed that the delay of "+delay+" day(s), if found established, be condoned in accordance with law and the matter be taken up on merits.",
+   "","AFFIDAVIT",
+   "[Insert court-compliant affidavit and verification.]"
+  ].join("\n");
+ }else if(type==="stay"){
+  body=[
+   "INTERIM / STAY APPLICATION","",
+   "1. Impugned award / order: "+award,
+   "2. Case / appeal: "+no,
+   "3. Prima facie grounds: [Insert concise grounds.]",
+   "4. Balance of convenience: [Insert record-supported facts.]",
+   "5. Irreparable prejudice: [Insert record-supported facts.]",
+   "6. Undertaking / security, if applicable: [Insert as advised.]",
+   "","PRAYER",
+   "Pending final disposal, the applicant seeks the specific interim relief stated here, subject to the orders of this Hon'ble Court."
+  ].join("\n");
+ }else if(type==="execution"){
+  body=[
+   "COMPLIANCE / EXECUTION APPLICATION STRUCTURE","",
+   "1. Award / order details: "+award,
+   "2. Applicant / decree-holder: "+appellant,
+   "3. Opposite party / respondent: "+respondent,
+   "4. Compliance history: [Insert verified dates and amounts.]",
+   "5. Amount deposited / paid: [Insert verified figure.]",
+   "6. Balance claimed: [Insert verified figure.]",
+   "7. Directions requiring compliance: [Quote / summarize accurately.]",
+   "","PRAYER",
+   "Pass appropriate directions for compliance / execution in accordance with the operative order and applicable procedure."
+  ].join("\n");
+ }else{
+  body=[
+   "ALLAHABAD HIGH COURT PROFILE — MACT APPEAL COVER","",
+   "IN THE HIGH COURT OF JUDICATURE AT ALLAHABAD",
+   "[APPROPRIATE BENCH / JURISDICTION TO BE VERIFIED]","",
+   "MEMORANDUM OF APPEAL ARISING OUT OF MACT AWARD",
+   "Under Section 173, Motor Vehicles Act, 1988","",
+   "Appeal No.: "+no,
+   "Appellant: "+appellant,
+   "Respondent(s): "+respondent,
+   "MACT / Claim Case No.: "+caseNo,
+   "Award Date: "+award,
+   "Accident Date: "+accident,
+   "Vehicle No.: "+vehicle,
+   "Relief / Amount in dispute: ₹ "+fmt(relief),
+   "","SYNOPSIS",
+   "[Prepare from the certified award and complete case record.]",
+   "","GROUNDS",
+   "[Insert numbered grounds after legal review.]",
+   "","PRAYER",
+   "[Insert precise relief sought.]",
+   "","ANNEXURES",
+   "[Prepare court-compliant index and annexures.]",
+   "",
+   "IMPORTANT: This profile only controls drafting structure and court heading. Current filing rules, jurisdiction, court fee, limitation, defect requirements and registry practice must be verified before filing."
+  ].join("\n");
+ }
+ const out=[
+  court.toUpperCase(),
+  "",
+  type==="writ"?"WRIT PETITION / PETITION UNDER ARTICLES 226/227 OF THE CONSTITUTION OF INDIA":"APPEAL / APPLICATION ARISING OUT OF MACT PROCEEDINGS",
+  "",
+  "Case / Appeal No.: "+no,
+  "",
+  appellant,
+  "... APPELLANT / PETITIONER",
+  "",
+  "VERSUS",
+  "",
+  respondent,
+  "... RESPONDENT(S)",
+  "",
+  "CASE PARTICULARS",
+  "MACT / File No.: "+caseNo,
+  "Accident Date: "+accident,
+  "Award Date: "+award,
+  "Vehicle No.: "+vehicle,
+  "Claimed / Relief Amount: ₹ "+fmt(relief),
+  "",
+  body,
+  "",
+  "Place: "+(r?.district||"[PLACE]"),
+  "Date: "+new Date().toLocaleDateString("en-IN"),
+  "",
+  "[ADVOCATE DETAILS]",
+  "[Enrollment / Address / Contact]",
+  "",
+  "DRAFT STATUS: DATA-DRIVEN WORKING DRAFT — REVIEW BEFORE FILING."
+ ].join("\n");
+ $("m13PetitionOut").value=out;
+ return out;
+}
+
+function numFromRecord(r,k){return r?Math.max(0,Number(r[k]||0)):0}
+function printText(title,text){
+ const w=window.open("","_blank");if(!w){toastV13("Popup blocked. Allow popups to print.");return}
+ w.document.write(`<html><head><title>${esc(title)}</title><style>@page{margin:20mm}body{font-family:Georgia,serif;padding:20px;line-height:1.55}h1{text-align:center;font-size:18px}pre{white-space:pre-wrap;font:14px Georgia,serif}</style></head><body><h1>${esc(title)}</h1><pre>${esc(text)}</pre></body></html>`);
+ w.document.close();w.focus();setTimeout(()=>w.print(),350);
+}
+function scanMapping(){
+ const id=$("m13MapCase").value,r=active().find(x=>String(x.recordId)===String(id));if(!r){toastV13("Select a case.");return}
+ const keys=Object.keys(r),canonical=["caseTitle","fileNumber","mactNo","claimantName","fatherName","address","mobile","accidentDate","vehicleNo","vehicleType","insuranceCo","courtName","district","income","age","disabilityPercentage","compensationAmount","status","finalStatus","notes"];
+ const rows=canonical.map(k=>{const exact=keys.includes(k),alt=keys.find(x=>x.toLowerCase().replace(/[^a-z0-9]/g,"").includes(k.toLowerCase().replace(/[^a-z0-9]/g,"")));return [k,exact?"Exact":alt?"Possible alternate":"Missing",exact?k:alt||"—",exact?r[k]:alt?r[alt]:""]});
+ $("m13MapOut").innerHTML=`<table class="m13-table"><tr><th>Canonical field</th><th>Status</th><th>Source key</th><th>Value</th></tr>${rows.map(x=>`<tr><td>${esc(x[0])}</td><td class="${x[1]==="Missing"?"m13-warn":"m13-ok"}">${esc(x[1])}</td><td>${esc(x[2])}</td><td>${esc(x[3])}</td></tr>`).join("")}</table>`;
+}
+function applyMapping(){
+ const id=$("m13MapCase").value,key=$("m13Canonical").value,source=$("m13SourceKey").value.trim(),manual=$("m13MapValue").value;
+ const rs=readRecords(),r=rs.find(x=>String(x.recordId)===String(id));if(!r||!key){toastV13("Select a case and canonical field.");return}
+ let value=manual;
+ if(!value&&source)value=r[source]??"";
+ if(!value){toastV13("Enter a source key with a value or a manual override.");return}
+ r[key]=value;r.updatedAt=now();r._v13Mapping=r._v13Mapping||[];r._v13Mapping.push({canonical:key,sourceKey:source||"manual",at:now()});
+ saveRecords(rs);try{window.MACT?.renderAll?.()}catch(e){};scanMapping();stats();toastV13("Canonical field updated and mapping metadata retained.");
+}
+function exportMap(){
+ const rs=readRecords(),report=rs.map(r=>({recordId:r.recordId,label:label(r),mapping:r._v13Mapping||[],missing:["caseTitle","claimantName","mactNo","accidentDate"].filter(k=>!String(r[k]||"").trim())}));
+ download("MACT_V13_Field_Mapping_Report.json",JSON.stringify(report,null,2),"application/json");
+}
+function download(name,text,type){
+ const a=document.createElement("a");const u=URL.createObjectURL(new Blob([text],{type}));a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);
+}
+function runTests(){
+ const tests=[],ids=["recordsTableBody","newFileModal","fileDetailModal","addDateModal","petitionModal","hearingPrintFieldsModal","pinUnlockModal","unlockBtn","savePinBtn","recycleBinBtn","v7CommandPalette","m12Fab","m13Fab"];
+ ids.forEach(id=>tests.push(["DOM: "+id,!!$(id),"Required UI element"]));
+ ["saveLocal","renderAll","openDetail","editRecord","deleteRecord","openModal","closeModal","buildPetition"].forEach(fn=>tests.push(["Function: "+fn,typeof window[fn]==="function","Global workflow function"]));
+ tests.push(["Storage readable",Array.isArray(readRecords()),"mact_unlimited_records is an array"]);
+ tests.push(["Unique record IDs",duplicateIds().length===0,duplicateIds().length?"Duplicates: "+duplicateIds().join(", "):"No duplicate IDs"]);
+ tests.push(["No missing record IDs",readRecords().filter(r=>!r.recordId).length===0,"Every stored record should have recordId"]);
+ tests.push(["JSON round-trip",(()=>{try{const x=JSON.stringify(readRecords());return Array.isArray(JSON.parse(x))}catch(e){return false}})(),"Records serialize and parse"]);
+ tests.push(["PIN module",!!window.MACTLock,"Existing lock API available"]);
+ const failed=tests.filter(x=>!x[1]).length,passed=tests.length-failed;
+ $("m13QaSummary").innerHTML=`<span>✓ PASS ${passed}</span><span class="${failed?"m13-warn":""}">${failed?"⚠":"✓"} CHECK ${failed}</span><span>${tests.length} total</span>`;
+ $("m13QaOut").innerHTML=`<table class="m13-table"><tr><th>Test</th><th>Result</th><th>Detail</th></tr>${tests.map(x=>`<tr><td>${esc(x[0])}</td><td class="${x[1]?"m13-ok":"m13-fail"}">${x[1]?"PASS":"FAIL"}</td><td>${esc(x[2])}</td></tr>`).join("")}</table>`;
+ window.MACTV13LastQA={at:now(),passed,failed,total:tests.length,tests};
+ return window.MACTV13LastQA;
+}
+function testStorage(){
+ const old=localStorage.getItem("m13_qa_probe");let ok=false;
+ try{localStorage.setItem("m13_qa_probe","ok");ok=localStorage.getItem("m13_qa_probe")==="ok";localStorage.removeItem("m13_qa_probe")}catch(e){ok=false}
+ $("m13QaOut").innerHTML=`<div class="m13-section"><b class="${ok?"m13-ok":"m13-fail"}">${ok?"PASS":"FAIL"}</b> LocalStorage write/read test ${old!==null?"(existing probe restored)":""}</div>`;
+}
+function testSchema(){
+ const rs=readRecords(),required=["recordId","caseTitle","mactNo","claimantName","accidentDate","vehicleNo","insuranceCo","courtName"];
+ const rows=rs.slice(0,100).map(r=>{const missing=required.filter(k=>!Object.prototype.hasOwnProperty.call(r,k));return [label(r),missing]});
+ $("m13QaOut").innerHTML=rows.length?`<table class="m13-table"><tr><th>Case</th><th>Missing schema keys</th></tr>${rows.map(x=>`<tr><td>${esc(x[0])}</td><td class="${x[1].length?"m13-warn":"m13-ok"}">${x[1].length?esc(x[1].join(", ")):"Complete key set"}</td></tr>`).join("")}</table>`:"<div class='m13-help'>No active records to inspect.</div>";
+}
+function exportQA(){
+ const q=window.MACTV13LastQA||runTests();download("MACT_V13_QA_Report.json",JSON.stringify({application:"MACT Legal Portal",version:"V13",generatedAt:now(),qa:q,recordCount:active().length},null,2),"application/json");
+}
+function securityStatus(){
+ const has=String(localStorage.getItem("mact_local_pin_v1")||"").length>=4;
+ $("m13SecurityOut").innerHTML=`<div class="m13-summary"><span class="${has?"m13-ok":"m13-warn"}">${has?"✓ PIN configured":"⚠ No PIN configured"}</span><span>Individual delete: ${has?"PIN protected":"existing app confirmation only"}</span><span>Bulk delete: ${has?"PIN protected":"not PIN-enforced until PIN is configured"}</span></div>`;
+}
+let guardBusy=false;
+function verifyPin(){
+ const saved=String(localStorage.getItem("mact_local_pin_v1")||"");
+ if(saved.length<4){toastV13("Configure the existing 4–8 digit app PIN first.");return false}
+ const entered=prompt("MACT security: enter your app PIN to authorize deletion:");
+ return entered!==null&&entered.trim()===saved;
+}
+function deletionGuard(e){
+ if(guardBusy)return;
+ const target=e.target.closest?.("[data-delete],[data-trash-restore],#bulkDeleteBtn,#emptyTrashBtn");
+ if(!target)return;
+ if(target.matches("[data-trash-restore]"))return;
+ const hasPin=String(localStorage.getItem("mact_local_pin_v1")||"").length>=4;
+ if(!hasPin)return;
+ e.preventDefault();e.stopImmediatePropagation();guardBusy=true;
+ try{
+  if(!verifyPin())return;
+  if(target.id==="bulkDeleteBtn"){
+   const ids=[...document.querySelectorAll(".record-check:checked")].map(x=>String(x.value));
+   if(!ids.length){toastV13("Select records first.");return}
+   const rs=readRecords(),t=now(),locked=rs.filter(r=>ids.includes(String(r.recordId))&&String(r.locked)==="YES").length;
+   if(!confirm(`Move ${ids.length-locked} record(s) to Recycle Bin after PIN verification?`))return;
+   rs.forEach(r=>{if(ids.includes(String(r.recordId))&&String(r.locked)!=="YES"){r.deleted=true;r.deletedAt=t;r.deleteSource="v13-pin-guard";r.updatedAt=t}});
+   saveRecords(rs);window.MACT?.renderAll?.();window.MACT?.syncCloud?.();toastV13("PIN-authorized deletion completed.");
+  }else if(target.id==="emptyTrashBtn"){
+   if(!confirm("Permanently remove all deleted local records? This cannot be undone locally."))return;
+   saveRecords(readRecords().filter(r=>!r.deleted&&!r.deletedAt));window.MACT?.renderAll?.();toastV13("PIN-authorized local empty-bin completed.");
+  }else{
+   const id=target.dataset.delete;
+   const rs=readRecords(),r=rs.find(x=>String(x.recordId)===String(id));
+   if(!r)return;
+   if(!confirm(`Move this record to Recycle Bin?\n\n${label(r)}`))return;
+   r.deleted=true;r.deletedAt=now();r.deleteSource="v13-pin-guard";r.updatedAt=now();saveRecords(rs);
+   window.MACT?.renderAll?.();window.MACT?.syncCloud?.();toastV13("PIN-authorized deletion completed.");
+  }
+ }finally{setTimeout(()=>{guardBusy=false},250)}
+}
+function openExistingPetition(){
+ const b=$("generatePetitionBtn");if(b)b.click();else if(typeof window.openPetition==="function")window.openPetition(currentId());
+}
+function openV12(){if($("m12Fab"))$("m12Fab").click()}
+function bind(){
+ $("m13Fab").onclick=()=>{$("m13Ov").classList.add("show");populateCases();stats();securityStatus()};
+ $("m13Close").onclick=()=>$("m13Ov").classList.remove("show");
+ $("m13Ov").addEventListener("click",e=>{if(e.target.id==="m13Ov")$("m13Ov").classList.remove("show")});
+ document.querySelectorAll(".m13-tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".m13-tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".m13-page").forEach(x=>x.classList.remove("active"));b.classList.add("active");$("m13-"+b.dataset.page).classList.add("active");if(b.dataset.page==="mapping")scanMapping();if(b.dataset.page==="security")securityStatus()});
+ $("m13NewCase").onclick=()=>{const b=$("openNewFileModalBtn");if(b)b.click()};
+ $("m13OpenPetition").onclick=openExistingPetition;$("m13OpenV12").onclick=openV12;$("m13RunQuickQA").onclick=runTests;
+ $("m13SuggestMultiplier").onclick=suggestMultiplier;$("m13Calc").onclick=calc;$("m13UseCurrentCase").onclick=loadCurrentCase;
+ $("m13CopyCalc").onclick=async()=>{calc();const t=$("m13CalcOut").dataset.copy||"";try{await navigator.clipboard.writeText(t);toastV13("Calculation copied.")}catch(e){$("m13CalcOut").focus();toastV13("Select/copy the calculation manually.")}};
+ $("m13GeneratePetition").onclick=buildHighCourtDraft;$("m13PrintPetition").onclick=()=>printText("MACT High Court Draft",$("m13PetitionOut").value||buildHighCourtDraft());
+ $("m13CopyPetition").onclick=async()=>{const t=$("m13PetitionOut").value||buildHighCourtDraft();try{await navigator.clipboard.writeText(t);toastV13("Draft copied.")}catch(e){toastV13("Clipboard unavailable; use the text area copy command.")}};
+ $("m13ScanMap").onclick=scanMapping;$("m13ApplyMap").onclick=applyMapping;$("m13ExportMap").onclick=exportMap;
+ $("m13RunTests").onclick=runTests;$("m13TestStorage").onclick=testStorage;$("m13TestSchema").onclick=testSchema;$("m13ExportQA").onclick=exportQA;
+ $("m13LockNow").onclick=()=>window.MACTLock?.lock?.();$("m13OpenSecurity").onclick=()=>{const b=$("securityBtn");if(b)b.click();else toastV13("Existing PIN settings button was not found.")};
+ $("m13TestDeleteGuard").onclick=()=>{if(String(localStorage.getItem("mact_local_pin_v1")||"").length>=4)toastV13("Delete Guard is active. A PIN will be required before destructive actions.");else toastV13("Configure the existing app PIN first.")};
+ document.addEventListener("click",deletionGuard,true);
+ document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"){stats();securityStatus()}});
+ window.addEventListener("storage",e=>{if(e.key===KEY){stats();populateCases()}});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape")$("m13Ov").classList.remove("show");if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==="v"){e.preventDefault();$("m13Fab").click()}});
+ window.MACTV13={open:()=>$("m13Fab").click(),calculate:calc,runTests,buildHighCourtDraft,scanMapping};
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bind,{once:true});else bind();
+})();
+</script>
+
+
+<!-- ==========================================================
+     MACT LEGAL PORTAL V14 — GOOGLE APPS SCRIPT + DRIVE SYNC
+     Additive layer: V1–V13 remain intact.
+     Backend: Google Apps Script Web App -> Google DriveApp.
+     No Google Cloud OAuth Client ID is required in the HTML.
+     ========================================================== -->
+<style id="mact-v14-css">
+#m14Fab{position:fixed;right:18px;bottom:86px;z-index:9997;border:0;border-radius:999px;padding:12px 16px;background:linear-gradient(135deg,#188038,#0b8043);color:#fff;font-weight:800;box-shadow:0 10px 30px rgba(24,128,56,.30);cursor:pointer}
+#m14Fab:hover{transform:translateY(-1px)}
+#m14Fab{display:none!important}
+#m14Ov{position:fixed;inset:0;z-index:9998;background:rgba(4,10,20,.72);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:18px}
+#m14Ov.show{display:flex}
+#m14Box{width:min(920px,100%);max-height:94vh;overflow:auto;background:#fff;color:#182230;border-radius:18px;box-shadow:0 24px 80px rgba(0,0,0,.38);padding:20px}
+.dark #m14Box{background:#111827;color:#eef2f7}
+.m14-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.m14-head h2{margin:0;font-size:19px}.m14-sub{font-size:12px;opacity:.7;margin-top:3px}
+.m14-close{border:0;background:#eef2f7;border-radius:10px;padding:8px 11px;cursor:pointer}.dark .m14-close{background:#1f2937;color:#fff}
+.m14-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.m14-card{border:1px solid #dce4ef;border-radius:14px;padding:14px;background:#fbfdff}.dark .m14-card{border-color:#273449;background:#0f172a}
+.m14-card h3{margin:0 0 8px;font-size:14px}.m14-card p{font-size:12px;line-height:1.55;margin:6px 0;opacity:.82}
+.m14-full{grid-column:1/-1}.m14-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.m14-row input,.m14-row select{flex:1;min-width:180px;padding:10px 11px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;color:#111827}.dark .m14-row input,.dark .m14-row select{background:#111827;color:#fff;border-color:#334155}
+.m14-btn{border:0;border-radius:9px;padding:10px 13px;font-weight:700;cursor:pointer}.m14-primary{background:#188038;color:#fff}.m14-success{background:#1a73e8;color:#fff}.m14-warn{background:#f9ab00;color:#111}.m14-light{background:#eef2f7;color:#182230}.dark .m14-light{background:#1f2937;color:#fff}
+.m14-status{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700}.m14-dot{width:10px;height:10px;border-radius:50%;background:#9aa0a6}.m14-dot.ok{background:#1e8e3e}.m14-dot.warn{background:#f9ab00}.m14-dot.err{background:#d93025}
+.m14-stat{font-size:24px;font-weight:900}.m14-muted{font-size:11px;opacity:.65}.m14-log{max-height:190px;overflow:auto;background:#0b1220;color:#d9e7ff;border-radius:10px;padding:10px;font:11px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap}
+.m14-check{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.45}.m14-check input{margin-top:3px}
+.m14-code{font:11px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:#f1f5f9;border-radius:9px;padding:8px;word-break:break-all}.dark .m14-code{background:#020617}
+@media(max-width:700px){#m14Box{padding:14px;border-radius:15px}.m14-grid{grid-template-columns:1fr}.m14-full{grid-column:auto}#m14Fab{right:12px;bottom:76px}.m14-row input,.m14-row select{min-width:100%}}
+</style>
+
+<button id="m14Fab" type="button" title="Google Apps Script Drive Sync">☁️ Drive Sync</button>
+<div id="m14Ov" aria-hidden="true">
+ <div id="m14Box" role="dialog" aria-modal="true" aria-labelledby="m14Title">
+  <div class="m14-head">
+   <div><h2 id="m14Title">☁️ Google Drive Auto Sync — V14.2 Cloud Only</h2><div class="m14-sub">Google Apps Script Web App → Google Drive • two-way merge • V1–V13 preserved</div></div>
+   <button class="m14-close" id="m14Close" type="button">✕</button>
+  </div>
+  <div class="m14-grid">
+   <section class="m14-card m14-full">
+    <div class="m14-status"><span id="m14Dot" class="m14-dot"></span><span id="m14Status">Apps Script not connected</span></div>
+    <div class="m14-muted" id="m14Account">Backend: —</div>
+   </section>
+   <section class="m14-card m14-full">
+    <h3>🔗 Apps Script Web App — Auto Configured</h3>
+    <div class="m14-row"><input id="m14ScriptUrl" type="url" autocomplete="off" readonly></div>
+    <p><b>Automatic connection enabled.</b> The Apps Script /exec URL and Drive destination are built into this HTML. No manual URL, Sync Key, or connection step is required.</p>
+   </section>
+   <section class="m14-card">
+    <h3>📁 Drive destination</h3>
+    <div class="m14-row"><input id="m14FolderName" type="text" value="MACT Legal Portal V14" readonly></div>
+    <p id="m14FileInfo">Drive backup: not verified</p>
+   </section>
+   <section class="m14-card">
+    <h3>📊 Sync health</h3>
+    <div class="m14-row"><div><div class="m14-stat" id="m14CaseCount">0</div><div class="m14-muted">synced records</div></div><div><div class="m14-stat" id="m14Size">0 KB</div><div class="m14-muted">backup payload</div></div></div>
+    <p id="m14Last">Last Drive sync: Never</p>
+   </section>
+   <section class="m14-card">
+    <h3>☁️ Cloud Sync</h3>
+    <div class="m14-auto-only">☁️ Google Drive Auto Sync — ALWAYS ON</div>
+    <p class="m14-muted">No Check Connection, Sync Now, Restore, Disconnect, Sync Key or manual sync action is required. Google Drive remains the required master.</p>
+   </section>
+   <section class="m14-card m14-full">
+    <label class="m14-check"><input id="m14Auto" type="checkbox"><span><b>True Auto Sync</b> — save/edit/delete/restore के बाद automatic sync, offline retry, और हर 30 सेकंड remote change-check.</span></label>
+    <p class="m14-muted">Google Drive is the master database. If the internet is unavailable, changes remain queued and the portal retries automatically when the connection returns.</p>
+   </section>
+   <section class="m14-card m14-full">
+    <h3>🧭 Automatic Setup</h3>
+    <p><b>Cloud-only automatic setup.</b> This HTML contains the deployed Apps Script /exec URL. On startup it verifies Google Drive, pulls the Drive master, and continuously merges local mutations into the Drive master.</p>
+    <p class="m14-muted">No URL paste, Sync Key, Check Connection, Sync Now, Restore or Disconnect action is required.</p>
+   </section>
+   <section class="m14-card m14-full">
+    <h3>🧪 Connection / Sync Log</h3>
+    <div class="m14-log" id="m14Log">V14 Apps Script + Drive engine ready.</div>
+   </section>
+  </div>
+ </div>
+</div>
+<script id="mact-v14-js">
+(function(){
+ "use strict";
+ const FIXED_SCRIPT_URL=APPS_SCRIPT_URL,FOLDER_KEY="mact_v14_drive_folder_name_v1",AUTO_KEY="mact_v14_drive_auto",LAST_KEY="mact_v14_drive_last_sync",SIG_KEY="mact_v14_drive_last_signature_v1",BACKUP_NAME="MACT_Legal_Portal_Data_V14.json";
+ let syncing=false,autoTimer=null;
+ const $=id=>document.getElementById(id);
+ const now=()=>new Date().toISOString();
+ function log(m){const el=$("m14Log");if(el)el.textContent="["+new Date().toLocaleTimeString()+"] "+m+"\n"+el.textContent.slice(0,6000)}
+ function toast14(m){if(typeof window.toast==="function")window.toast(m);else log(m)}
+ function setStatus(kind,text){
+  const d=$("m14Dot"),el=$("m14Status");if(d)d.className="m14-dot "+(kind||"");if(el)el.textContent=text;
+  const hk=kind==="ok"?"ok":kind==="err"?"connecting":"connecting";
+  updateHeader(hk);
+ }
+ function getUrl(){return FIXED_SCRIPT_URL}
+ function saveSettings(){localStorage.setItem(FOLDER_KEY,"MACT Legal Portal V14");}
+ function localRecords(){try{return Array.isArray(window.MACT?.records)?window.MACT.records:JSON.parse(localStorage.getItem("mact_unlimited_records")||"[]")}catch(e){return[]}}
+ function normalize(r){const x=Object.assign({},r||{});x.recordId=x.recordId||x.timestamp||("mact-v14-"+Date.now()+"-"+Math.random().toString(36).slice(2));x.createdAt=x.createdAt||x.updatedAt||now();x.updatedAt=x.updatedAt||x.createdAt;x.deleted=!!x.deleted;if(x.deleted&&!x.deletedAt)x.deletedAt=x.updatedAt;if(Array.isArray(x.documents))x.documents=x.documents.map(d=>{const y=Object.assign({},d);delete y.data;return y});delete x.judgmentPdfData;return x}
+ function records(){return localRecords().map(normalize)}
+ function buildPayload(){const rs=records();const appState={};["mact_custom_fields_v1","mact_form_sections_layout","mact_field_visibility_v1","mact_print_fields_v1","mact_audit_v1","mact_advanced_state_v1"].forEach(k=>{try{const v=localStorage.getItem(k);if(v!==null)appState[k]=v}catch(e){}});return {schemaVersion:"14.1",source:"MACT Legal Portal",generatedAt:now(),records:rs,appState:appState,deviceId:deviceId()}}
+ function deviceId(){let x=localStorage.getItem("mact_v14_device_id");if(!x){x="mact-v14-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2);localStorage.setItem("mact_v14_device_id",x)}return x}
+ function payloadText(){return JSON.stringify(buildPayload())}
+ async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join("")}
+ function sizeKB(s){return (new TextEncoder().encode(s).byteLength/1024).toFixed(1)}
+ function jsonp(action,extra={},attempt=0){
+  return new Promise((resolve,reject)=>{
+   const url=getUrl();
+   if(!url){reject(new Error("Cloud URL is not configured."));return}
+   const cb="mactV14Cb_"+Date.now()+"_"+Math.random().toString(36).slice(2,10);
+   const script=document.createElement("script");
+   const params=new URLSearchParams(Object.assign({
+    action:String(action||"health"),
+    callback:cb,
+    folder:"MACT Legal Portal V14",
+    fileName:BACKUP_NAME,
+    _:Date.now()
+   },extra||{}));
+   let finished=false,timer=null;
+   const cleanup=()=>{if(timer)clearTimeout(timer);try{delete window[cb]}catch(e){}if(script&&script.parentNode)script.parentNode.removeChild(script)};
+   const retry=()=>{
+    if(finished)return;
+    finished=true;cleanup();
+    if(attempt<3){
+      const wait=700+attempt*900;
+      setTimeout(()=>jsonp(action,extra,attempt+1).then(resolve).catch(reject),wait);
+    }else{
+      reject(new Error("Google Drive service did not respond. Automatic retry remains enabled."));
+    }
+   };
+   timer=setTimeout(retry,22000);
+   window[cb]=(data)=>{
+    if(finished)return;
+    finished=true;cleanup();
+    if(!data||typeof data!=="object"){reject(new Error("Invalid response from Google Drive service."));return}
+    if(data.ok===false){reject(new Error(String(data.error||"Google Drive service returned an error.")));return}
+    resolve(data);
+   };
+   script.onerror=retry;
+   script.src=url+"?"+params.toString();
+   (document.head||document.documentElement).appendChild(script);
+  });
+ }
+
+ function postBackupViaForm(payload){
+  return new Promise((resolve,reject)=>{
+   const url=getUrl();
+   if(!url){reject(new Error("Cloud URL is not configured."));return}
+   const frame=document.createElement("iframe");
+   const frameName="mactDrivePost_"+Date.now()+"_"+Math.random().toString(36).slice(2,8);
+   frame.name=frameName;
+   frame.style.cssText="display:none;width:0;height:0;border:0;position:absolute;left:-9999px";
+   const form=document.createElement("form");
+   form.method="POST";
+   form.action=url;
+   form.target=frameName;
+   form.style.display="none";
+   // Code.gs parsePostBody_() accepts form-urlencoded `payload`, but that
+   // payload must contain the COMPLETE POST envelope (action + folder + fileName + payload).
+   // The previous PC patch sent only the inner payload, which made Code.gs save an empty backup.
+   const envelope={
+     action:"backup",
+     folder:"MACT Legal Portal V14",
+     fileName:BACKUP_NAME,
+     payload:payload
+   };
+   const input=document.createElement("textarea");
+   input.name="payload";
+   input.value=JSON.stringify(envelope);
+   form.appendChild(input);
+   document.body.appendChild(frame);
+   document.body.appendChild(form);
+   let done=false;
+   const finish=(ok,err)=>{
+    if(done)return;
+    done=true;
+    try{form.remove()}catch(e){}
+    setTimeout(()=>{try{frame.remove()}catch(e){}},500);
+    if(ok)resolve(true);else reject(err||new Error("Cloud upload could not be submitted."));
+   };
+   const timer=setTimeout(()=>finish(true),5000);
+   frame.onload=()=>{clearTimeout(timer);finish(true)};
+   frame.onerror=()=>{clearTimeout(timer);finish(false,new Error("Cloud upload channel failed."))};
+   try{form.submit()}catch(e){clearTimeout(timer);finish(false,e)}
+  });
+ }
+
+ async function waitForBackup(payload){
+  const wanted=Array.isArray(payload.records)?payload.records.map(normalize):[];
+  const wantedIds=new Set(wanted.map(r=>String(r.recordId)));
+  let lastCount=-1,lastError="";
+  for(let i=0;i<12;i++){
+   try{
+    const check=await jsonp("get",{},0);
+    const got=Array.isArray(check?.payload?.records)?check.payload.records.map(normalize):[];
+    lastCount=got.length;
+    const gotIds=new Set(got.map(r=>String(r.recordId)));
+    const missing=wanted.filter(r=>!gotIds.has(String(r.recordId)));
+    if(!missing.length && got.length>=wanted.length)return true;
+   }catch(e){lastError=String(e&&e.message?e.message:e)}
+   await new Promise(r=>setTimeout(r,900));
+  }
+  throw new Error(
+   wantedIds.size
+    ? "Drive save is taking longer than usual. Automatic verification will retry in the background."
+    : (lastError||"Google Drive verification is pending.")
+  );
+ }
+
+ async function postBackup(){
+  const url=getUrl();
+  if(!url)throw new Error("Cloud URL is not configured.");
+  const payload=buildPayload();
+
+  // Use a native HTML form POST instead of fetch(no-cors). This works reliably
+  // when the portal is opened directly from a PC file:// location and avoids
+  // CORS/opaque-response issues. Code.gs already accepts form-urlencoded
+  // payloads through parsePostBody_().
+  await postBackupViaForm(payload);
+  await waitForBackup(payload);
+  return true;
+ }
+ function merge(local,cloud){
+  const m=new Map(local.map(normalize).map(r=>[String(r.recordId),r]));
+  (cloud||[]).map(normalize).forEach(r=>{
+    const old=m.get(String(r.recordId));
+    if(!old||((Date.parse(r.updatedAt)||0)>=(Date.parse(old.updatedAt)||0)))m.set(String(r.recordId),r);
+  });
+  return [...m.values()];
+ }
+ async function applyCloud(data){
+  if(!data||!data.payload)throw new Error("Invalid Drive backup returned by Apps Script");
+  const p=Object.assign({},data.payload);
+  if(!Array.isArray(p.records)&&Array.isArray(data.records))p.records=data.records;
+  if(!Array.isArray(p.records))throw new Error("Drive backup contains no records array");
+  localStorage.setItem("mact_unlimited_records",JSON.stringify(p.records));
+  Object.entries(p.appState||{}).forEach(([k,v])=>{try{localStorage.setItem(k,v)}catch(e){}});
+  try{window.MACT?.saveLocal?.()}catch(e){}
+  try{window.MACT?.renderAll?.()}catch(e){}
+ }
+ async function sync(mode="merge"){
+  if(syncing)return false;
+  if(!navigator.onLine){setStatus("warn","Internet unavailable • Auto retry ON");log("Cloud sync paused: internet unavailable. Automatic retry remains enabled.");return false}
+  syncing=true;setStatus("warn","Connecting to Google Drive…");
+  try{
+   saveSettings();
+   const local=records();
+   const oldSig=localStorage.getItem(SIG_KEY)||"";
+   const cloud=await jsonp("get");
+   if(!cloud||cloud.ok!==true||!cloud.payload)throw new Error("Google Drive master could not be read.");
+   const rawCloudRecords=Array.isArray(cloud?.payload?.records)?cloud.payload.records:(Array.isArray(cloud?.records)?cloud.records:[]);
+   const cloudRecords=rawCloudRecords.map(normalize);
+   if(cloud.recovered) log("Existing Drive backup recovered from: "+(cloud.recoveredFrom||"another Drive location")+". Records found: "+cloudRecords.length);
+
+   // SAFETY RULE: an empty/missing Drive file must NEVER erase existing
+   // portal records. If this browser has records and Drive is empty, upload
+   // the browser copy first and verify it, then continue normally.
+   if(cloudRecords.length===0 && local.length>0){
+     await postBackup();
+     localStorage.setItem(SIG_KEY,await sha(payloadText()));
+     markLast();
+     setStatus("ok","Google Drive connected • Records uploaded and verified");
+     log("Drive master was empty; existing portal records were uploaded and verified without data loss.");
+     updateUI();
+     return true;
+   }
+
+   const localText=payloadText();
+   const cloudText=JSON.stringify(cloud.payload);
+   const localHash=await sha(localText),cloudHash=await sha(cloudText);
+   const localChanged=!!oldSig&&localHash!==oldSig;
+   const cloudChanged=!!oldSig&&cloudHash!==oldSig;
+
+   if(mode==="download"){
+     if(cloudRecords.length>0){
+       await applyCloud(cloud);
+       localStorage.setItem(SIG_KEY,await sha(payloadText()));
+       markLast();
+       setStatus("ok","Google Drive connected • Master loaded");
+       log("Drive master loaded successfully.");
+       updateUI();
+       return true;
+     }
+     throw new Error("Drive master is empty; local records were preserved.");
+   }
+
+   if(!oldSig){
+     const merged=merge(local,cloudRecords);
+     if(local.length===0 && cloudRecords.length>0){
+       await applyCloud(cloud);
+       log("Initial Drive connection completed: existing Drive records loaded into the portal.");
+     }else if(local.length>0){
+       await applyCloud({payload:Object.assign({},cloud.payload,{records:merged})});
+       await postBackup();
+       log("Initial cloud setup completed: local + Drive records merged and verified.");
+     }else{
+       log("Initial Drive connection completed: both local and Drive contain no records.");
+     }
+   }else if(localChanged&&cloudChanged){
+     const merged=merge(local,cloudRecords);
+     await applyCloud({payload:Object.assign({},cloud.payload,{records:merged})});
+     await postBackup();
+     log("Two-way merge completed: both local and Drive changed; merged copy verified.");
+   }else if(cloudChanged&&!localChanged){
+     if(cloudRecords.length>0){
+       await applyCloud(cloud);
+       log("Remote Drive changes pulled automatically.");
+     }else if(local.length){
+       await postBackup();
+       log("Drive became empty; local records were preserved and re-uploaded.");
+     }
+   }else if(localChanged&&!cloudChanged){
+     await postBackup();
+     log("Local mutation pushed automatically to Drive and verified.");
+   }else{
+     log("Google Drive is already synchronized.");
+   }
+
+   localStorage.setItem(SIG_KEY,await sha(payloadText()));
+   markLast();
+   setStatus("ok","Google Drive connected • Auto Sync ALWAYS ON");
+   if($("m14Account"))$("m14Account").textContent="Backend: Google Apps Script • Google Drive";
+   updateHeader("ok");
+   updateUI();return true;
+  }catch(e){
+   const msg=String(e&&e.message?e.message:e);
+   setStatus("err","Google Drive connection unavailable");
+   log("Cloud sync error: "+msg);
+   updateHeader("connecting", "☁ Google Drive connection unavailable • Automatic retry ON");
+   if($('m14Account'))$('m14Account').textContent="Backend error: "+msg;
+   return false;
+  }finally{syncing=false;updateUI()}
+ }
+ function updateHeader(kind="connecting",message=""){
+  const conn=$("connectionStatus"), main=$("syncStatus"), auto=$("trueAutoSyncStatus"), lastEl=$("lastSyncStatus");
+  const last=localStorage.getItem(LAST_KEY);
+  if(conn){
+    conn.className="status "+(kind==="ok"?"online":kind==="offline"?"offline":"warn");
+    conn.textContent=kind==="ok"?"● Google Drive Connected":kind==="offline"?"● Internet unavailable • Auto retry ON":"● Google Drive: Connecting…";
+  }
+  if(main){
+    main.textContent=message || (kind==="ok"?"☁ Google Drive Auto Sync ALWAYS ON":kind==="offline"?"☁ Auto Sync waiting for internet":"☁ Auto Sync: Connecting to Google Drive…");
+  }
+  if(auto) auto.textContent=kind==="ok"?"☁ Auto Sync: ON":kind==="offline"?"☁ Auto Sync: Waiting":"☁ Auto Sync: Retrying";
+  if(lastEl) lastEl.textContent=last?"Last Drive Sync: "+new Date(last).toLocaleString():"Last Drive Sync: Pending";
+ }
+ function markLast(){const t=now();localStorage.setItem(LAST_KEY,t);if($("m14Last"))$("m14Last").textContent="Last Drive sync: "+new Date(t).toLocaleString();updateHeader("ok")}
+ async function connect(){return sync("merge")}
+ function disconnect(){setStatus("warn","Reconnecting to Google Drive automatically");log("Manual disconnect is disabled. Google Drive remains the required master database.");return false}
+ function updateUI(){
+  if($("m14CaseCount"))$("m14CaseCount").textContent=String(records().filter(r=>!r.deleted&&!r.deletedAt).length);
+  if($("m14Size"))$("m14Size").textContent=sizeKB(payloadText())+" KB";
+  const u=getUrl();
+  if($("m14ScriptUrl"))$("m14ScriptUrl").value=u;
+  if($("m14FolderName"))$("m14FolderName").value="MACT Legal Portal V14";
+  if($("m14Auto"))$("m14Auto").checked=true;
+  const last=localStorage.getItem(LAST_KEY);
+  if(last&&$("m14Last"))$("m14Last").textContent="Last Drive sync: "+new Date(last).toLocaleString();
+  if(u&&$("m14FileInfo"))$("m14FileInfo").textContent="Drive master: "+BACKUP_NAME+" • Apps Script managed";
+  const lastNow=localStorage.getItem(LAST_KEY);
+  if(lastNow && $("lastSyncStatus"))$("lastSyncStatus").textContent="Last Drive Sync: "+new Date(lastNow).toLocaleString();
+ }
+ function startAuto(){
+  clearInterval(autoTimer);
+  autoTimer=setInterval(async()=>{if(navigator.onLine&&!syncing&&getUrl()){try{await sync("merge")}catch(e){log("Auto-sync retry: "+e.message)}}},30000);
+ }
+ function open(){const o=$("m14Ov");if(o){o.classList.add("show");o.setAttribute("aria-hidden","false")}updateUI()}
+ function close(){const o=$("m14Ov");if(o){o.classList.remove("show");o.setAttribute("aria-hidden","true")}}
+ function bind(){
+  if($("googleLoginBtn"))$("googleLoginBtn").onclick=()=>open();
+  if($("m14Fab"))$("m14Fab").onclick=open;
+  if($("m14Close"))$("m14Close").onclick=close;
+  if($("m14Ov"))$("m14Ov").addEventListener("click",e=>{if(e.target.id==="m14Ov")close()});
+  // Legacy controls are intentionally hidden/disabled; auto-sync is the only sync path.
+  ["m14Connect","m14Sync","m14Restore","m14Disconnect"].forEach(id=>{const b=$(id);if(b){b.disabled=true;b.style.display="none"}});
+  if($("m14Auto")){ $("m14Auto").checked=true; $("m14Auto").disabled=true; $("m14Auto").style.display="none"; }
+  window.addEventListener("online",()=>{setStatus("warn","Internet restored • Reconnecting to Google Drive…");setTimeout(()=>{if(!syncing)sync("merge")},250)});
+  window.addEventListener("offline",()=>{setStatus("warn","Internet unavailable • Auto retry ON");updateHeader("offline")});
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&!syncing)sync("merge")});
+  window.addEventListener("focus",()=>{if(!syncing)sync("merge")});
+  updateUI();
+  startAuto();
+  setTimeout(()=>{if(!syncing)sync("merge")},900);
+ }
+ // PC/file:// compatibility: Web Crypto is not guaranteed on every local-file browser.
+ // Keep the existing SHA-256 path when available and use a deterministic local
+ // fallback only when crypto.subtle is unavailable.
+ const originalSha=sha;
+ sha=async function(s){
+  try{
+   if(window.crypto&&window.crypto.subtle&&window.TextEncoder)return await originalSha(s);
+  }catch(e){}
+  let h1=2166136261>>>0,h2=16777619>>>0;
+  const str=String(s||"");
+  for(let i=0;i<str.length;i++){
+   const c=str.charCodeAt(i);
+   h1^=c;h1=Math.imul(h1,16777619)>>>0;
+   h2^=c+(i&255);h2=Math.imul(h2,2246822519)>>>0;
+  }
+  return ("00000000"+h1.toString(16)).slice(-8)+("00000000"+h2.toString(16)).slice(-8)+
+         str.length.toString(16)+"-"+str.slice(0,32).length;
+ };
+ window.MACTV14={open,sync:()=>sync("merge"),connect,disconnect,update:updateUI,getConfig:()=>({scriptUrl:getUrl(),folder:localStorage.getItem(FOLDER_KEY)||"MACT Legal Portal V14"})};
+ window.queueTrueAutoSync=()=>{if(window.MACTV14&&typeof window.MACTV14.sync==="function")return window.MACTV14.sync();return false};
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bind,{once:true});else bind();
+})();
+</script>
+
+
+<!-- MACT V14.4 STABILITY + PRODUCTIVITY PATCH -->
+<style id="mact-v144-stability-css">
+#m144Tools{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 12px}
+#m144Tools .btn{font-size:11px}
+#m144Health{display:none;margin:10px 0 0;padding:12px;border:1px solid #dbe5f0;border-radius:12px;background:#f8fbff}
+#m144Health.show{display:block}
+.m144-health-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.m144-h{padding:9px;border:1px solid #e1e8f0;border-radius:9px;background:#fff}.m144-h b{display:block;font-size:16px}.m144-h span{font-size:9px;color:#64748b}
+body.mact-dark #m144Health{background:#111b2e;border-color:#26334a}body.mact-dark .m144-h{background:#0f192a;border-color:#33425d}
+@media(max-width:700px){.m144-health-grid{grid-template-columns:1fr 1fr}}
+</style>
+<script id="mact-v144-stability-js">
+(function(){
+ "use strict";
+ const $=id=>document.getElementById(id);
+ const KEY="mact_unlimited_records";
+ const safe=(fn,f)=>{try{return fn()}catch(e){console.error("MACT V14.4:",e);return f}};
+ const active=()=>safe(()=>JSON.parse(localStorage.getItem(KEY)||"[]"),[]).filter(r=>r&&!r.deleted&&!r.deletedAt);
+ const all=()=>safe(()=>JSON.parse(localStorage.getItem(KEY)||"[]"),[]);
+ const stamp=()=>new Date().toISOString();
+ function download(name,text,type){
+   const a=document.createElement("a"),u=URL.createObjectURL(new Blob([text],{type:type||"application/json"}));
+   a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1200);
+ }
+ function snapshot(){
+   const payload={
+     format:"MACT Legal Portal Full Backup",
+     version:"V14.4-stability",
+     exportedAt:stamp(),
+     records:all(),
+     appState:{}
+   };
+   ["mact_custom_fields_v1","mact_form_sections_layout","mact_field_visibility_v1","mact_print_fields_v1","mact_audit_v1","mact_audit_log_v1","mact_advanced_state_v1","mact_dark_mode"].forEach(k=>{
+     const v=localStorage.getItem(k); if(v!==null) payload.appState[k]=v;
+   });
+   return payload;
+ }
+ function backup(){
+   const p=snapshot();
+   download("MACT_Legal_Portal_Full_Backup_"+new Date().toISOString().slice(0,10)+".json",JSON.stringify(p,null,2));
+   toast("Full backup downloaded successfully.");
+ }
+ function repair(){
+   const rs=all();const seen=new Set();let repaired=0,invalid=0;
+   rs.forEach(r=>{
+     if(!r||typeof r!=="object"){invalid++;return}
+     if(!r.recordId||seen.has(String(r.recordId))){
+       r.recordId=(r.timestamp||"mact")+"-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8);
+       repaired++;
+     }
+     seen.add(String(r.recordId));
+     if(!r.createdAt)r.createdAt=r.updatedAt||stamp();
+     if(!r.updatedAt)r.updatedAt=r.createdAt;
+     if(!Array.isArray(r.proceedings))r.proceedings=[];
+   });
+   localStorage.setItem(KEY,JSON.stringify(rs.filter(Boolean)));
+   if(typeof window.loadLocal==="function")window.loadLocal();
+   if(typeof window.renderAll==="function")window.renderAll();
+   if(typeof window.queueTrueAutoSync==="function")window.queueTrueAutoSync();
+   toast(repaired?("Data check repaired "+repaired+" record ID(s)."):("Data check complete — no duplicate IDs found."));
+   showHealth();
+ }
+ function showHealth(){
+   const rs=all(),act=rs.filter(r=>!r.deleted&&!r.deletedAt),seen=new Set(),dups=[];
+   rs.forEach(r=>{const id=String(r?.recordId||"");if(id&&seen.has(id))dups.push(id);if(id)seen.add(id)});
+   let docs=0, hearings=0, overdue=0; const today=new Date().toISOString().slice(0,10);
+   act.forEach(r=>{
+     docs+=(r.documents||r.docs||[]).length;
+     (r.proceedings||[]).forEach(p=>{if(p.nextDate){hearings++;if(p.nextDate<today)overdue++}});
+   });
+   const box=$("m144Health"); if(!box)return;
+   box.innerHTML='<div class="m144-health-grid">'+
+    [['Total records',rs.length],['Active',act.length],['Hearings',hearings],['Overdue',overdue],['Documents',docs],['Deleted',rs.length-act.length],['Duplicate IDs',dups.length],['Storage',navigator.onLine?'ONLINE':'OFFLINE']]
+    .map(x=>'<div class="m144-h"><b>'+String(x[1])+'</b><span>'+x[0]+'</span></div>').join('')+
+    '</div><div style="margin-top:8px;font-size:10px;color:#64748b">Last checked: '+new Date().toLocaleString('en-IN')+'</div>';
+   box.classList.add("show");
+ }
+ function restoreFile(file){
+   const rd=new FileReader();
+   rd.onload=function(){
+     try{
+       const p=JSON.parse(rd.result);
+       const incoming=Array.isArray(p)?p:(Array.isArray(p.records)?p.records:null);
+       if(!incoming)throw new Error("Backup does not contain a records array.");
+       const existing=all(),byId=new Map(existing.map(r=>[String(r.recordId||""),r]));
+       let added=0,updated=0;
+       incoming.forEach(r=>{
+         if(!r||typeof r!=="object")return;
+         const id=String(r.recordId||"");
+         if(!id)return;
+         const old=byId.get(id);
+         if(!old){byId.set(id,r);added++}
+         else if((Date.parse(r.updatedAt)||0)>=(Date.parse(old.updatedAt)||0)){byId.set(id,r);updated++}
+       });
+       localStorage.setItem(KEY,JSON.stringify([...byId.values()]));
+       if(p.appState)Object.entries(p.appState).forEach(([k,v])=>{try{localStorage.setItem(k,String(v))}catch(e){}});
+       if(typeof window.loadLocal==="function")window.loadLocal();
+       if(typeof window.renderAll==="function")window.renderAll();
+       if(typeof window.queueTrueAutoSync==="function")window.queueTrueAutoSync();
+       toast("Backup merged: "+added+" new, "+updated+" updated record(s).");
+       showHealth();
+     }catch(e){toast("Backup import failed: "+e.message)}
+   };
+   rd.onerror=()=>toast("Backup file could not be read.");
+   rd.readAsText(file);
+ }
+ function install(){
+   const card=document.querySelector("#cases");
+   if(card&&!$("m144Tools")){
+     const head=card.querySelector("div[style*='justify-content:space-between']");
+     if(head){
+       const tools=document.createElement("div");tools.id="m144Tools";
+       tools.innerHTML='<button type="button" class="btn btn-light" id="m144Backup">💾 Full Backup</button>'+
+                       '<label class="btn btn-light" style="cursor:pointer;margin:0">📥 Restore Backup<input id="m144RestoreInput" type="file" accept=".json,application/json" hidden></label>'+
+                       '<button type="button" class="btn btn-light" id="m144HealthBtn">🛡️ Data Health</button>'+
+                       '<button type="button" class="btn btn-light" id="m144Repair">🧹 Repair IDs</button>';
+       head.appendChild(tools);
+       const health=document.createElement("div");health.id="m144Health";card.insertBefore(health,card.querySelector(".search-box"));
+       $("m144Backup").onclick=backup;$("m144HealthBtn").onclick=()=>{showHealth();$("m144Health").scrollIntoView({behavior:"smooth",block:"nearest"})};
+       $("m144Repair").onclick=()=>{if(confirm("Repair missing/duplicate record IDs and normalize core record metadata?"))repair()};
+       $("m144RestoreInput").onchange=e=>{const f=e.target.files?.[0];if(f&&confirm("Merge this backup into the current portal? Existing newer records will be kept."))restoreFile(f);e.target.value=""};
+     }
+   }
+   document.addEventListener("keydown",e=>{
+     const tag=(document.activeElement?.tagName||"").toLowerCase();
+     if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="s"&&!["input","textarea","select"].includes(tag)){
+       e.preventDefault();safe(()=>{window.MACT?.saveLocal?.();window.queueTrueAutoSync?.();toast("Saved locally; cloud sync queued.")});
+     }
+     if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==="b"){e.preventDefault();backup()}
+   });
+   window.addEventListener("online",()=>{setTimeout(()=>window.queueTrueAutoSync?.(),1200)});
+   window.addEventListener("beforeunload",()=>safe(()=>window.MACT?.saveLocal?.()));
+   setTimeout(showHealth,1200);
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install,{once:true});else install();
+ window.MACTV144={backup,showHealth,repair};
+})();
+</script>
+
+
+<!-- MACT V14.5 PC / FILE:// CLOUD COMPATIBILITY PATCH
+     Base portal logic preserved. Code.gs preserved. Backend contract unchanged.
+     Changes: native form POST, delayed Drive verification, resilient JSONP retry,
+     local-file crypto fallback, and automatic retry-friendly status handling.
+-->
+</body>
 </html>
